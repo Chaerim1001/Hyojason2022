@@ -1,0 +1,184 @@
+
+   html, body{
+    width:100%;
+    padding:0;
+    margin:0;
+    background-color: gainsboro;
+    box-sizing: border-box;
+    background:linear-gradient(301.63deg, #2C2E43 -1.12%, #6658BC 156.05%);
+    background-repeat:no-repeat;
+ }
+ *{
+    font-family:'Noto Sans KR', sans-serif;
+ }
+ ::-webkit-scrollbar{
+    width:5px;
+    height:6px;
+ }
+ ::-webkit-scrollbar-thumb {
+    background-color: #c8c8c8;
+ }
+ body{
+    overflow: auto;
+ }
+ #head{
+    display: flex;
+    align-items: center;
+    position:relative;
+    padding:30px;
+    padding-left:5%;
+    padding-right:5%;
+ 
+ }
+ #head .input{
+    background-color: #00ff0000;
+    color:white;
+    font-size:40px;
+    cursor: pointer;
+ }
+ #head #user_home_login{
+    border:0;
+    background-color: #00ff0000;
+    color:white;
+    font-size: 30px;
+    cursor: pointer;
+    font-weight:700;
+    text-align:right;
+ }
+ #head .input input{
+    border:0;
+    background-color: #00ff0000;
+    color:white;
+    font-size: 30px;
+    cursor: pointer;
+    font-weight:700;
+ }
+ #head #search{
+    width:100%;
+    min-width:910px;
+    height:20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ #head #search #search_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ #head #search #search_box #search_app{
+    width:70%;
+    min-width: 400px;
+    margin-right: 20px;
+    border:0;
+    padding:7px;
+    padding-left: 12px;
+    padding-right: 12px;
+    background:rgba(255,255,255,0.43);
+    color:white;
+ }
+ #head #search #search_box #search_app::placeholder{
+    color:white;
+    font-size:40px;
+    font-weight:700;
+    margin-top: 15px;
+ }
+ #head #search #search_box #search_btn{
+    font-size: 40px;
+    border:0;
+    background-color: #00ff0000;
+    cursor: pointer;
+    color:white;
+    font-weight:700;
+    margin-right: 20px;
+ }
+ #head #search #search_box #search_btn:hover{
+    text-decoration: underline;
+ }
+ #head .head_btn{
+    margin-right: 20px;
+ }
+
+ #body{
+    height:84%; 
+    /*display:flex; */
+    /*align-items:center; */
+    width:100%; 
+    min-width:580px; 
+    padding:2%;
+    padding-left: 3%;
+    padding-right: 3%;
+    box-sizing: border-box;
+    font-size:18px
+ }
+ #body #step {
+    min-width:800px; 
+    height:90%;
+    overflow:auto;
+ }
+ #body .step_list{
+    /*width:100%; */
+    min-width:800px; 
+    height:100%; 
+    /*margin:2%;*/
+    /*padding:35px;*/
+    /*padding-bottom:0px;*/
+    /*padding-top:15px;*/
+ }
+ #body .step_list .step{
+    height:45%; 
+    width:100%;
+    min-width:350px;
+    cursor:pointer;
+    background:#47417C;
+    border-radius:10px;
+    box-shadow:0px 4px 14px 3px rgba(0,0,0,0.15); 
+    color:white;
+    margin-right:15px;
+    overflow:auto;
+ }
+ 
+ #body .step_list .step_title{
+    display:flex; 
+    align-items:center; 
+    width:65%; 
+    min-width:500px; 
+    position:relative;
+    /*padding:15px;*/
+    /*padding-left:20px;*/
+    /*padding-right:20px;*/
+    /*padding-bottom:0;*/
+ }
+ #body .step_list .step .step_text{
+    border-radius:12px; 
+    padding:15px;
+    padding-left:20px;
+    padding-right:20px;
+    width:90%; 
+    height:55%;
+    font-weight:400;
+ }
+ #body #step_img{
+    width:60%; 
+    height:100%; 
+    display:flex; 
+    justify-content:center;
+    align-items:center;
+ }
+ 
+ #body .btn{
+    background-color: #00ff0000;
+    font-size: 25px;
+    color:white;
+    border:0;
+    cursor:pointer;
+    font-weight:700;
+    margin-top:15px;
+ }
+ #body .btn:hover{
+    text-decoration: underline;
+ }
+ #body #back_btn{
+    position:absolute;
+    right:0;
+ }

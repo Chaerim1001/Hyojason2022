@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% load static %}
+	<meta charset="utf-8">
+	<title>효자손</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'support/css/user_my_page.css' %}">
+	<style>
+		html, body{
+		width:100%;
+		height:100%;
+		padding:10px;
+		margin:0;
+		background-color: gainsboro;
+		box-sizing: border-box;
+		background:linear-gradient(-294.89deg, #30324A -0.93%, #6353C7 129.73%);
+		background-position: 100% 100%;\
+		background-size: cover;
+		overflow:auto;
+		font-weight: 700;
+	}
+	</style>
+	<SCRIPT>
+		function mainChange1(){
+			var menu1=document.getElementById("quest_list_btn");
+		
+
+			if(menu1.style.opacity==="1"){
+			}else{
+				if(menu2.style.opacity==="1"){
+					menu2.style.color="white";
+					menu2.style.opacity="0.55";
+				}
+				menu1.style.color="white";
+				menu1.style.opacity="1";
+
+			}
+			document.getElementById("quest_list_main").style.display="block";
+			
+		}
+		function mainChange2(){
+			var menu3=document.getElementById("quest_list_btn");
+			var menu4=document.getElementById("history_btn");
+
+			if(menu4.style.opacity==="1"){
+			}else{
+				if(menu3.style.opacity==="1"){
+					menu3.style.color="white";
+					menu3.style.opacity="0.55";
+				}
+				menu4.style.color="white";
+				menu4.style.opacity="1";
+
+			}
+
+			document.getElementById("history_main").style.display="block";
+			document.getElementById("quest_list_main").style.display="none";
+		}
+	</SCRIPT>
+</head>
+<body>
+	<div id="head">
+		<img src="https://i.ibb.co/6J04RrG/image.png" width="50" style="padding-top:10px;" onclick="location.href='{% url "mainpage" %}'">
+		<input type="button" class="home_btn" id="user_home_back" name="user_home_back" value="홈으로"onclick="location.href='{% url "mainpage" %}'">
+	</div>
+	<hr style="width:95%;border: 0; height: 1px; background:rgba(255,255,255,0.43);">
+	<div style="display:flex;padding:30px;padding-top:0; padding-bottom:0; height:82%">
+		<div id=menubar>
+			<input type="button" id="quest_list_btn" class="menu" value="질문목록" style="color:white; opacity:1" onclick='mainChange1()'><br>
+			
+
+			<input type="button" id="logout" onclick="location.href='{% url "logout" %}'" value="로그아웃" class="menu" value="로그아웃">
+		</div>
+		<div id="main">
+			<div id="quest_list_main">
+				<table id="quest_table" style="" >
+					<colgroup>
+						<col width="20%">
+						<col width="45%">
+						<col width="20%">
+						<col width="15%">
+					</colgroup>
+					<thead id="quest_table_head">
+						<style> th{padding:10px; padding-left:18px; text-align: left;font-size:25px;} td{padding:10px; padding-left:15px;font-size:25px;}</style>
+						<tr>
+							<th>서비스명</th>
+							<th>제목</th>
+							<th>업로드 날짜</th>
+							<th>답변 상태</th>
+						</tr>
+					</thead>
+				</table>
+				<div id="table_box">
+					<table style="border-collapse:collapse;width:100%;">
+						<colgroup>
+							<col width="20%">
+							<col width="45%">
+							<col width="20%">
+							<col width="15%">
+						</colgroup>
+						<tbody id="quest_table_body">
+							{% for qna in qnas%}
+							<tr>
+								<td name="name">{{qna.appId}}</td>
+								<td name="title" onclick="location.href='{% url "qna_detail" qna.appId qna.qnaId %}'" class="quest_title">{{qna.title}}</td>
+								<td name="date"  style="font-size:15px">{{qna.qDate}}</td>
+                                {% if not qna.checkAnswer %}
+								<td name="state">답변 대기</td>
+                                {% else %}
+								<td name="state">답변 완료</td>
+                                {% endif %}
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</body>
+</html>

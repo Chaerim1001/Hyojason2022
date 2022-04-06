@@ -1,0 +1,11 @@
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        {{ update_app_form.as_p }}
+        <button type="submit">수정하기</button>
+    </form>
+</div>
+{% endblock%}

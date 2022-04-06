@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>효자손</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'support/css/corp_home_list.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'support/css/corp_item_management.css' %}">
+	<style>
+		html, body{
+			width:100%;
+			height:100%;
+			padding:0;
+			margin:0;
+			background-color: gainsboro;
+			box-sizing: border-box;
+			background-color: white;
+		}
+	</style>
+</head>
+<body>
+	<div id=corp_menu>
+		<img src="https://i.ibb.co/6J5csk1/image.png" onclick="location.href='{% url "mainpage" %}'" width="100" style="margin-left:5px; margin-bottom:20px; padding-left:10px;"><br>
+		
+		<input type="button" id="app_list_btn" class="menu" value="어플 리스트" onclick="location.href='{% url "corp_page" %}';mainChange1()"style="background-color:white; color:#30324A;" ><br>
+      <input type="button" id="upload_btn" class="menu" value="게시물 업로드" onclick="location.href='{% url "fileupload" %}';mainChange2()" ><br>
+      <input type="button" id="quest_manage_btn" class="menu" value="질문 관리" onclick="location.href='{% url "qna_manage" %}'; mainChange3()"><br>
+
+		<div id="blank"></div>
+
+		<input type="button" id="logout_btn" class="menu" onclick="location.href='{% url "logout"%}'" value="로그아웃">
+	</div>
+	<div id="main">	
+		<span style="font-size: 30px">{{app.appName}}</span>
+		<hr class="hr1" style="margin-bottom: 30px;">
+		<div style="margin-bottom: 10px;">기본 기능</div>
+		<table id="basic_table" style="" >
+			<colgroup>
+				<col width="20%">
+				<col width="25%">
+				<col width="15%">
+				<col width="15%">
+				<col width="12.5%">
+				<col width="12.5%">
+			</colgroup>
+			<thead id="basic_table_head">
+				<style> th{padding:10px;} td {padding:7px;}</style>
+				<tr>
+					<th>기능 이름</th>
+					<th>업로드 날짜</th>
+					<th></th>
+					<th></th>
+					<th>    </th>
+					<th>   </th>
+				</tr>
+			</thead>
+		</table>
+		<div style="height:200px;max-height:250px;background-color: #EDEDED ;overflow: auto; margin-bottom: 20px">
+			<table style="border-collapse:collapse;width:100%;">
+				<colgroup>
+					<col width="20%">
+					<col width="25%">
+					<col width="15%">
+					<col width="15%">
+					<col width="12.5%">
+					<col width="12.5%">
+				</colgroup>
+				<tbody id="etc_table_body">
+					<style>tr{/*border-top: 1px solid #bcbcbc;*/ border-bottom: 1px solid #bcbcbc;}</style>
+				
+				{% for guidelines in guideline%}
+					{% if guidelines.is_Basic and guidelines.order == 1 %}
+					<tr>
+						<td>{{ guidelines.funcName }}</td>
+						<td>{{ guidelines.uploadDate }}</td>
+						<td></td>
+						<td></td>
+						<td><input type="button" class="basic_table_btn" onclick="location.href='{% url "preview" app.appId guidelines.funcName %}'" value="미리보기"></td>
+						<td><a href = "{% url 'filedelete' guidelines.funcName %}"> <input type="button" class="basic_table_btn" value="삭제하기" onclick ='return confirm("해당 기능을 삭제하시겠습니까?")'></a></td>
+					</tr>
+					{% endif %}
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div style="margin-bottom: 10px;">부가 기능</div>
+		<table id="etc_table" style="" >
+			<colgroup>
+				<col width="20%">
+				<col width="25%">
+				<col width="15%">
+				<col width="15%">
+				<col width="12.5%">
+				<col width="12.5%">
+			</colgroup>
+			<thead id="etc_table_head">
+				<style> th{padding:10px;} td {padding:7px;}</style>
+				<tr>
+					<td>기능 이름</td>
+					<td>업로드 날짜</td>
+					<td></td>
+					<td></td>
+					<td> </td>
+					<td> </td>
+				</tr>
+			</thead>
+		</table>
+		<div style="height:200px;max-height:250px;background-color: #EDEDED;overflow-y: auto; margin-bottom: 20px">
+			<table style="border-collapse:collapse;width:100%;">
+				<colgroup>
+					<col width="20%">
+					<col width="25%">
+					<col width="15%">
+					<col width="15%">
+					<col width="12.5%">
+					<col width="12.5%">
+				</colgroup>
+				<tbody id="etc_table_body">
+					<style>tr{/*border-top: 1px solid #bcbcbc;*/ border-bottom: 1px solid #bcbcbc;}</style>
+				{% for guidelines in guideline%}
+					{% if not guidelines.is_Basic and guidelines.order == 1 %}
+					<tr>
+						<td>{{ guidelines.funcName }}</td>
+						<td>{{ guidelines.uploadDate }}</td>
+						<td></td>
+						<td></td>
+						<td><input type="button" class="basic_table_btn" onclick="location.href='{% url "preview" app.appId guidelines.funcName %}'" value="미리보기"></td>
+						<td><a href = "{% url 'filedelete' guidelines.funcName %}"> <input type="button" class="basic_table_btn" value="삭제하기" onclick ='return confirm("해당 기능을 삭제하시겠습니까?")'></a></td>
+					</tr>
+					{% endif %}
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+</body>
+</html>

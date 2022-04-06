@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       {% load static %}
+        <title>
+            효자손
+        </title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+	    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+	   <link rel="stylesheet" href="{% static 'support/css/answer_detail.css' %}">
+	   	    <link rel="stylesheet" href="{% static 'support/css/menu.css' %}">
+
+        <style>
+		html, body{
+			width:100%;
+			height:100%;
+			padding:0;
+			margin:0;
+			background-color: gainsboro;
+			box-sizing: border-box;
+			background-color: #ffffff;
+		}
+	    </style>
+        <script>
+            
+        </script>
+    </head>
+    <body>   
+        <div id=corp_menu>
+ <img src="https://i.ibb.co/6J5csk1/image.png" onclick="location.href='{% url "mainpage" %}'" width="100" style="margin-left:5px; margin-bottom:20px; padding-left:10px;"><br>
+             
+             		<input type="button" id="app_list_btn" class="menu" value="어플 리스트" onclick="location.href='{% url "corp_page" %}';mainChange1()" ><br>
+      <input type="button" id="upload_btn" class="menu" value="게시물 업로드" onclick="location.href='{% url "fileupload" %}';mainChange2()" ><br>
+      <input type="button" id="quest_manage_btn" class="menu" value="질문 관리" onclick="location.href='{% url "qna_manage" %}'; mainChange3()"style="background-color:white; color:#30324A;" ><br>
+    
+            <div id="blank"></div>
+    
+            <input type="button" id="logout_btn" class="menu" onclick="location.href='{% url "logout" %}'" value="로그아웃">
+            
+        </div>
+        <div id=main>
+            <div id="item_list_main" style="display: block">
+                <div class="title">{{app.appName}}</div>
+                <hr class="hr1">
+                <br>
+                <br>
+                <div class="sub_title" style="float:left; width:10%;">질문</div>
+                <div style="float:left; width:80%; font-weight: 400;">{{qna.title}}</div>
+                <br>
+                <br>
+                <div id="question_box">
+                    
+                    <div class="q_text" style="text-align: left;">{{qna.question}}</div>
+                </div> 
+                <br>
+                <br>
+                <div class="sub_title" style="float:left; ">답변 내용</div>
+                <br>
+                <br>
+                <div id="question_box">
+                    
+                    <div class="q_text" style="text-align: left; ">{{qna.answer}}</div>
+                </div>
+                <br>
+                <div style="float: right;"><a href ="{% url 'answer_after' app.appName %}">목록으로</a></div>
+                <br>
+                <br>
+                <div style="text-align: center;">
+                 <input type="button" id="blue_btn"  onclick="location.href='{% url "answer_update" app.appName qna.qnaId %}'" style="display: inline-block" value="수정하기">
+                 <a href='{% url "answer_delete" app.appName qna.qnaId %}'><input type="button" id="blue_btn"  onclick="return confirm('삭제하시겠습니까?')" style="display: inline-block" value="삭제하기"> </a>     
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

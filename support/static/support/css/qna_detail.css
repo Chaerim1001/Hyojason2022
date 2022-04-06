@@ -1,0 +1,130 @@
+
+	html, body{
+		width:100%;
+		padding:0;
+		margin:0;
+		background-color: gainsboro;
+		box-sizing: border-box;
+		background:linear-gradient(-294.89deg, #30324A -0.93%, #6353C7 129.73%);
+		background-repeat:no-repeat;
+	}
+	*{
+		font-family:'Noto Sans KR', sans-serif;
+	}
+	::-webkit-scrollbar{
+		width:5px;
+		height:6px;
+	}
+	::-webkit-scrollbar-thumb {
+		background-color: #c8c8c8;
+	}
+	body{
+		overflow: auto;
+	}
+	#head{
+        display: flex;
+        align-items: center;
+        position:relative;
+        padding:30px;
+        padding-left:5%;
+        padding-right:5%;
+     
+     }
+     #head .input{
+        background-color: #00ff0000;
+        color:white;
+        font-size:40px;
+        cursor: pointer;
+     }
+     #head #user_home_login{
+        border:0;
+        background-color: #00ff0000;
+        color:white;
+        font-size: 30px;
+        cursor: pointer;
+        font-weight:700;
+        text-align:right;
+     }
+     #head .input input{
+        border:0;
+        background-color: #00ff0000;
+        color:white;
+        font-size: 30px;
+        cursor: pointer;
+        font-weight:700;
+     }
+     #head #search{
+        width:100%;
+        min-width:910px;
+        height:20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+     }
+     #head #search #search_box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+     }
+     #head #search #search_box #search_app{
+        width:70%;
+        min-width: 400px;
+        margin-right: 20px;
+        border:0;
+        padding:7px;
+        padding-left: 12px;
+        padding-right: 12px;
+        background:rgba(255,255,255,0.43);
+        color:white;
+     }
+     #head #search #search_box #search_app::placeholder{
+        color:white;
+        font-size:40px;
+        font-weight:700;
+        margin-top: 15px;
+     }
+     #head #search #search_box #search_btn{
+        font-size: 40px;
+        border:0;
+        background-color: #00ff0000;
+        cursor: pointer;
+        color:white;
+        font-weight:700;
+        margin-right: 20px;
+     }
+     #head #search #search_box #search_btn:hover{
+        text-decoration: underline;
+     }
+     #head .head_btn{
+        margin-right: 20px;
+     }
+
+	#main{
+		padding:30px;
+		padding-left: 50px;
+		padding-right: 50px;
+		width:100%;
+		height:100%;
+		box-sizing: border-box;
+	}
+	#main #input_quest_title{
+		background-color: #EDEDED;
+		border-radius: 10px;
+		border:0;
+		padding:10px;
+		width:98%;
+		font-size:30px;
+	}
+	#main .quest_input_btn{
+		border:0;
+		background-color:#FFFFFF;
+		font-size:25px;
+		padding:5px;
+		padding-left:15px;
+		padding-right:15px;
+		font-weight:700;
+		color:#4E4693;
+	}
+	#main #go_quest_list{
+		margin-bottom: 30px;
+	}

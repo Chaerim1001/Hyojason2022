@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+ {% load static %}
+	<meta charset="utf-8">
+	<title>효자손</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'support/css/home_quest_board.css' %}">
+	<style>
+		html, body{
+		width:100%;
+		height:100%;
+		padding:0;
+		margin:0;
+		background-color: gainsboro;
+		box-sizing: border-box;
+		background:linear-gradient(-294.89deg, #30324A -0.93%, #6353C7 129.73%);
+		background-position: 100% 100%;\
+		background-size: cover;
+		overflow:auto;
+		font-weight: 700;
+        
+	}
+    	*{
+		font-family:'Noto Sans KR', sans-serif;
+	}
+	::-webkit-scrollbar{
+		width:5px;
+		height:6px;
+	}
+	::-webkit-scrollbar-thumb {
+		background-color: #c8c8c8;
+	}
+	</style>
+	<SCRIPT>
+		function btn1(){
+			var btn11=document.getElementById("page_btn1");
+			var btn12=document.getElementById("page_btn2");
+			var btn13=document.getElementById("page_btn3");
+			var btn14=document.getElementById("page_btn4");
+			var btn15=document.getElementById("page_btn5");
+
+			if(btn11.style.backgroundColor==="#B1B1B1"){
+			}else{
+				btn11.style.backgroundColor="#B1B1B1";
+				btn11.style.color="black";
+				btn12.style.backgroundColor="#00ff0000";
+				btn12.style.color="white";
+				btn13.style.backgroundColor="#00ff0000";
+				btn13.style.color="white";
+				btn14.style.backgroundColor="#00ff0000";
+				btn14.style.color="white";
+				btn15.style.backgroundColor="#00ff0000";
+				btn15.style.color="white";
+			}
+		}
+		function btn2(){
+			var btn21=document.getElementById("page_btn1");
+			var btn22=document.getElementById("page_btn2");
+			var btn23=document.getElementById("page_btn3");
+			var btn24=document.getElementById("page_btn4");
+			var btn25=document.getElementById("page_btn5");
+
+			if(btn22.style.backgroundColor==="#B1B1B1"){
+			}else{
+				btn21.style.backgroundColor="#00ff0000";
+				btn21.style.color="white";
+				btn22.style.backgroundColor="#B1B1B1";
+				btn22.style.color="black";
+				btn23.style.backgroundColor="#00ff0000";
+				btn23.style.color="white";
+				btn24.style.backgroundColor="#00ff0000";
+				btn24.style.color="white";
+				btn25.style.backgroundColor="#00ff0000";
+				btn25.style.color="white";
+			}
+		}
+		function btn3(){
+			var btn31=document.getElementById("page_btn1");
+			var btn32=document.getElementById("page_btn2");
+			var btn33=document.getElementById("page_btn3");
+			var btn34=document.getElementById("page_btn4");
+			var btn35=document.getElementById("page_btn5");
+
+			if(btn33.style.backgroundColor==="#B1B1B1"){
+			}else{
+				btn31.style.backgroundColor="#00ff0000";
+				btn31.style.color="white";
+				btn32.style.backgroundColor="#00ff0000";
+				btn32.style.color="white";
+				btn33.style.backgroundColor="#B1B1B1";
+				btn33.style.color="black";
+				btn34.style.backgroundColor="#00ff0000";
+				btn34.style.color="white";
+				btn35.style.backgroundColor="#00ff0000";
+				btn35.style.color="white";
+			}
+		}
+		function btn4(){
+			var btn41=document.getElementById("page_btn1");
+			var btn42=document.getElementById("page_btn2");
+			var btn43=document.getElementById("page_btn3");
+			var btn44=document.getElementById("page_btn4");
+			var btn45=document.getElementById("page_btn5");
+
+			if(btn44.style.backgroundColor==="#B1B1B1"){
+			}else{
+				btn41.style.backgroundColor="#00ff0000";
+				btn41.style.color="white";
+				btn42.style.backgroundColor="#00ff0000";
+				btn42.style.color="white";
+				btn43.style.backgroundColor="#00ff0000";
+				btn43.style.color="white";
+				btn44.style.backgroundColor="#B1B1B1";
+				btn44.style.color="black";
+				btn45.style.backgroundColor="#00ff0000";
+				btn45.style.color="white";
+			}
+		}
+		function btn5(){
+			var btn51=document.getElementById("page_btn1");
+			var btn52=document.getElementById("page_btn2");
+			var btn53=document.getElementById("page_btn3");
+			var btn54=document.getElementById("page_btn4");
+			var btn55=document.getElementById("page_btn5");
+
+			if(btn55.style.backgroundColor==="#B1B1B1"){
+			}else{
+				btn51.style.backgroundColor="#00ff0000";
+				btn51.style.color="white";
+				btn52.style.backgroundColor="#00ff0000";
+				btn52.style.color="white";
+				btn53.style.backgroundColor="#00ff0000";
+				btn53.style.color="white";
+				btn54.style.backgroundColor="#00ff0000";
+				btn54.style.color="white";
+				btn55.style.backgroundColor="#B1B1B1";
+				btn55.style.color="black";
+			}
+		}
+	</SCRIPT>
+</head>
+<body>
+ <div id="head">
+      <div id="search">
+         <div style="position:relative;width:100%;">
+            <form id="search_box" method='post' action ="{% url 'mainpage' %}">{% csrf_token%}
+               <img src="https://i.ibb.co/6J04RrG/image.png" width="50" style="padding-right: 20px" onclick="location.href='{% url "mainpage" %}'">
+               <input type="text" id="search_app" name="search_app" value="{{app.appName}}" style="font-size:25px">
+               <input type="submit" id="search_btn" name="search_btn" value="검색하기">
+            <div style="text-align:right">
+               {% if not corp and not user %}
+               <input type="button" class="input" id="user_home_login" name="user_home_login" value="로그인" style="font-size:20px" onclick="location.href='{% url "sign-in"%}'">
+               {% endif %}
+               {% if user and not corp %}
+               <div class="input" style="display:flex;">
+               <input type="button" id="user_home_view" name="user_home_view" value="내 활동 보기" style="font-size:20px" onclick="location.href='{% url "my_page"%}'" >
+               <input type="button" id="user_home_logout" name="user_home_logout" value="로그아웃" style="font-size:20px" onclick="location.href='{% url "logout"%}'">
+               </div>
+               {% endif %}
+               {% if corp %}
+               <div class="input" style="display:flex;">
+               <input type="button" id="user_home_view" name="user_home_view" value="서비스 관리" style="font-size:20px" onclick="location.href='{% url "corp_page"%}'">
+               <input type="button" id="user_home_logout" name="user_home_logout" value="로그아웃" style="font-size:20px" onclick="location.href='{% url "logout"%}'">
+               </div>
+               {% endif %}
+            </form>
+            </div>
+         </div>  
+      </div>  
+   </div>
+   <hr style="width:95%;border: 0; height: 1px; background:rgba(255,255,255,0.43);">
+   <div id="body">
+		<div id="quest_board" style="height:90%; margin-top:25px;color:white; padding-left:3%; padding-right:3%">
+			<!-- 수정 -->
+            <form method='post'> {% csrf_token %}
+			<div style="display: flex; align-items:center; position: relative; margin-bottom:15px;min-width:700px">
+				
+				<div style="width:20%; min-width:175px; font-size: 35px; margin-bottom: 10px; margin-right: 15px">질문 게시판</div>
+				<input type="text" id="quest_search" name="quest_search" placeholder="질문 게시판에서 궁금한 단어를 검색해보세요.">
+				<!-- 수정 -->
+				<input type="submit" id="quest_search_btn" name="quest_search_btn" value="검색하기" style="font-size:25px; font-weight:700; width:15%; min-width:100px">
+			</div>
+            </form>
+			<!-- 수정 -->
+			<div style="border-radius: 15px; background-color:#47417C; height:85%; padding:10px;min-width:700px">
+				<table id="quest_list_table" style="width:100%;border-collapse: collapse;">
+					<tbody id="quest_list_table_body">
+						{% for qna in qnas%}
+						<style>td{padding:15px;border:none;overflow:hidden;cursor:pointer;} .state{text-align: right}</style>
+						<tr class="mouse" onclick="location.href='{% url "qna_detail" app.appName qna.qnaId %}'">
+							<td id="questlist_table_cate1" >{{qna.q_personId}}</td>
+							<td class="questlist_title" id="questlist_table_title1">{{qna.title}}</td>
+							{% if qna.checkAnswer == False %}
+							<td class="state">답변대기</td>
+                            {% else %}
+                            <td class="state">답변완료</td>
+                            {% endif %}
+						</tr>
+                        {% endfor %}
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div id="foot">
+			<div style="display: flex; justify-content: right; margin-top:0px; padding-left:3%; padding-right:3%; margin-top:20px">
+				<!-- 수정 -->
+				<input type="button" id="quest_btn" name="quest_btn" value="질문하기" style="font-weight:700;background-color:#00ff0000;border:0;color:white;font-size:25px; cursor:pointer" onclick="location.href='{% url "qna_create" app.appName %}'">
+			</div>
+			<!-- 수정 -->
+			<div style="display: flex;justify-content:center;padding-bottom: 25px">
+				<input type="button" id="page_btn1" class="page_btn" value="1" onclick="btn1()">
+				<input type="button" id="page_btn2" class="page_btn" value="2" onclick="btn2()">
+				<input type="button" id="page_btn3" class="page_btn" value="3" onclick="btn3()">
+				<input type="button" id="page_btn4" class="page_btn" value="4" onclick="btn4()">
+				<input type="button" id="page_btn5" class="page_btn" value="5" onclick="btn5()">
+			</div>
+		</div>
+		<img style="position:absolute; left:-20px; bottom:-40px" src="https://i.ibb.co/tXL6W9j/1081.png" width="300">
+	</div>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>기업 회원가입</title>
+	<meta charset="utf-8">
+
+	<style>
+		#box{
+			margin:0 auto;
+			width: 600px;
+		}
+		#box #welcome{
+			float : left;
+		}
+
+		#box #register_corp{
+			float:right;
+			background-color: #c8c8c8;
+			padding-top: 20px;
+			padding-left: 20px;
+			padding-right: 20px;
+			padding-bottom: 20px;
+			border-radius: 10px;
+		}
+		#dt_started #dt_yy{
+			float:left;
+			margin-right:2px;
+		}
+		#dt_started #dt_mm{
+			float:left;
+			margin-right:2px;
+		}
+		#dt_started #dt_dd{
+			float:left;
+		}
+	</style>
+    <script type="text/javascript"src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	
+</head>
+<body>
+<script type="text/javascript">
+        function check_pw(){
+			document.getElementById("check").style.display="block";
+			if(document.getElementById('corp_pw1').value==document.getElementById('corp_pw2').value){
+				document.getElementById('check').innerHTML="비밀번호가 일치합니다.";
+				document.getElementById('check').style.color='blue';
+			}else{
+				document.getElementById('check').innerHTML="비밀번호가 일치하지 않습니다.";
+				document.getElementById('check').style.color='red';
+			}
+        }
+        
+        $(function(){
+            $('#sign-up').click(function(){
+                if ($('.corpid_input').attr("check_result") == "fail"){
+                    alert("아이디 중복체크를 해주시기 바랍니다.");
+                    $('.corpid_input').focus();
+                    return false;}
+                
+                if ($('.corp_num_input').attr("check_result") == "fail"){
+                    alert("사업자등록번호 인증을 해주시기 바랍니다.");
+                    $('.corp_num_input').focus();
+                    return false;}
+                
+                if($('#corp_pw1').val() != $('#corp_pw2').val()){
+                    alert('비밀번호를 확인해주세요');
+                    $('#corp_pw1').focus();
+                    return false;
+                }
+                } )
+            
+            //아이디 다시 작성 시 중복 체크도 다시
+            $('.corpid_input').change(function () {
+            $('#id_check_sucess').hide();
+            $('#btn_id_check').show();
+            $('.corpid_input').attr("check_result", "fail");
+            })
+
+            //사업자등록번호 다시 작성 시 인증도 다시            
+            $('.corp_num_input').change(function () {
+            $('#btn_corp_check').show();
+            $('.corp_num_input').attr("check_result", "fail");
+            })
+
+            //대표자 이름 다시 작성 시 인증도 다시
+            $('.ceoname_input').change(function () {
+            $('#btn_corp_check').show();
+            $('.corp_num_input').attr("check_result", "fail");
+            })
+
+            //개업일자 다시 작성 시 인증도 다시 
+            $('.dt_started_input').change(function () {
+            $('#btn_corp_check').show();
+            $('.corp_num_input').attr("check_result", "fail");
+            })
+
+            $('#btn_id_check').click(function(){
+                var userid = $('#corp_id').val()
+                if(userid == ''){
+                    alert('아이디를 입력해주세요.')
+                    return;
+                }
+                $.ajax({
+                    url: "{% url 'id-check' %}",
+                    type:'get',
+                    data:{
+                        'userid':userid
+                    },
+                    dataType:'json',
+                    success:function(response){
+                        if(response.result != 'success'){
+                            console.error(response.data)
+                            return;
+                        }
+                        if(response.data == 'exist'){
+                            alert("존재하는 아이디 입니다");
+                            $('#userid').val('').focus();
+                            return;
+                        }else{
+                            alert("사용 가능한 아이디입니다");
+                            $('#btn_id_check').hide();
+                            $('#id_check_sucess').show();
+                            $('.corpid_input').attr("check_result", "success");
+                            return;
+                        }
+                    },
+                    error : function(xhr, error){
+                        alert("서버와의 통신에서 문제가 발생했습니다.");
+                        console.error("error :" + error);
+                    }
+                })
+            });
+            
+            $('#btn_corp_check').click(function(){
+                var ceo_name = $('#ceo_name').val()
+                var dt_started = $('#dt_started').val()
+                var corp_num = $('#corp_num').val()
+                
+                if(ceo_name == ''){
+                    alert('대표자 성명을 입력해주세요.');
+                    return;
+                }
+                if(dt_started == ''){
+                    alert('개업일자을 입력해주세요.');
+                    return;
+                }
+                if(corp_num == ''){
+                    alert('사업자등록번호를 입력해주세요.');
+                    return;
+                }
+                if(corp_num.length != 10){
+                    alert('사업자등록번호를 확인해주세요')
+                    return;
+                }
+                $.ajax({
+                    url: "{% url 'corpnum-check' %}",
+                    type:'get',
+                    data:{
+                        'ceo_name':ceo_name,
+                        'dt_started':dt_started,
+                        'corp_num':corp_num,
+                    },
+                    dataType:'json',
+                    success:function(response){
+                        if(response.result != 'success'){
+                            console.error(response.data)
+                            return;
+                        }
+                        if(response.data == 'exist'){
+                            alert("인증 완료");
+                            $('#btn_corp_check').hide();
+                            $('.corp_num_input').attr("check_result", "success");
+                            return;
+                        }else{
+                            alert("인증 실패");
+                            $('#userid').val('').focus();
+                            return;
+                        }
+                    },
+                error : function(xhr, error){
+                    alert("서버와의 통신에서 문제가 발생했습니다.");
+                    console.error("error : " + error);
+                }
+                })
+            });
+            })
+
+	</script>
+	<h1>기업 회원가입</h1>
+	<div id="box">
+		<div id="welcome">
+			<h2>효자손에 오신 걸<br>환영합니다.</h2>
+			<h2>서비스 이용을 위해<br>회원가입 부탁드립니다.</h2>
+		</div>
+
+		<form method="post" id="register_corp">
+         {% csrf_token %}
+			<div>
+				<label for="corp_name">기업명을 입력해주세요.</label><br>
+				<input id="corp_name" name="corpname" type="text" placeholder="" autofocus required>
+				<br>
+
+				<label for="ceo_name">대표자 성명을 입력해주세요.</label><br>
+				<input class="ceoname_input" id="ceo_name" name="ceoname" type="text" required >
+				<br>
+
+				<label for="dt_started">개업일자를 입력해주세요.</label><br>
+                <input class="dt_started_input" type="date" id="dt_started" name="dt_started"class="int" size=8 required>
+				<br>
+
+				<label for="corp_num">사업자등록번호를 입력해주세요.</label><br>
+				<input class="corp_num_input" id="corp_num" name="corp_num" type="text" maxlength="10" placeholder="숫자만 입력해주세요(-제외)" autofocus required>
+				<input class="corp_check" id="btn_corp_check" name="corp_check" type="button" value="인증">
+				<br>
+
+				<label for="app_name">어플 이름을 입력해주세요.</label><br>
+				<input id="app_name" name="appname" type="text" required>
+				<br>
+
+				<label for="corp_id">아이디를 입력해주세요.</label><br>
+				<input class="corpid_input" id="corp_id" name="corpid" type="text" placeholder="ID" required>
+				<input class="id_check" id="btn_id_check" name="id_check" type="button" value="중복확인">
+				<br>
+
+				<label for="corp_pw1">비밀번호를 입력해주세요.</label><br>
+				<input id="corp_pw1" name="corppwd1" type="password" placeholder="PASSWORD" required>
+				<br>
+
+				<label for="corp_pw2">비밀번호를 한번 더 입력해주세요.</label><br>
+				<input id="corp_pw2" name="corppwd2" type="password" placeholder="PASSWORD" onchange="check_pw()" required><br><div style="display:none" id="check"></div>
+
+				<label for="corp_mail">이메일을 입력해주세요.</label><br>
+				<input id="corp_mail" name="corp_mail" type="email" placeholder="E-MAIL" required>
+				<br>
+
+                <label for="phone_num">전화번호를 입력해주세요.</label><br>
+				<input id="phone_num" name="phone_num" type="tel" placeholder="010-1234-5678" required>
+				<br>
+
+				
+			</div>
+			
+			<button type="submit" id="sign-up" name="sign-up" >회원가입</button><br>
+
+			<a href="{% url 'sign-in' %}" target="">로그인하러 가기</a>
+		</form>
+	</div>
+</body>
+</html>

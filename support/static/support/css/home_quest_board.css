@@ -1,0 +1,142 @@
+
+	
+
+	body{
+		overflow: auto;
+	}
+	#head{
+        display: flex;
+        align-items: center;
+        position:relative;
+        padding:30px;
+        padding-left:5%;
+        padding-right:5%;
+     
+     }
+     #head .input{
+        background-color: #00ff0000;
+        color:white;
+        font-size:40px;
+        cursor: pointer;
+     }
+     #head #user_home_login{
+        border:0;
+        background-color: #00ff0000;
+        color:white;
+        font-size: 30px;
+        cursor: pointer;
+        font-weight:700;
+        text-align:right;
+     }
+     #head .input input{
+        border:0;
+        background-color: #00ff0000;
+        color:white;
+        font-size: 30px;
+        cursor: pointer;
+        font-weight:700;
+     }
+     #head #search{
+        width:100%;
+        min-width:910px;
+        height:20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+     }
+     #head #search #search_box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+     }
+     #head #search #search_box #search_app{
+        width:70%;
+        min-width: 400px;
+        margin-right: 20px;
+        border:0;
+        padding:7px;
+        padding-left: 12px;
+        padding-right: 12px;
+        background:rgba(255,255,255,0.43);
+        color:white;
+     }
+     #head #search #search_box #search_app::placeholder{
+        color:white;
+        font-size:40px;
+        font-weight:700;
+        margin-top: 15px;
+     }
+     #head #search #search_box #search_btn{
+        font-size: 40px;
+        border:0;
+        background-color: #00ff0000;
+        cursor: pointer;
+        color:white;
+        font-weight:700;
+        margin-right: 20px;
+     }
+     #head #search #search_box #search_btn:hover{
+        text-decoration: underline;
+     }
+     #head .head_btn{
+        margin-right: 20px;
+     }
+
+	#body{
+		/*overflow:auto;*/
+		height:100%;
+		position:relative;
+		padding:20px;
+	}
+	#body #quest_board #quest_search{
+		width:70%;
+		height:35px;
+		margin-right: 20px;
+		border:0;
+		padding:5px;
+		padding-left:20px;
+		padding-right:10px;
+		background:rgba(255,255,255,0.43);
+		color:white;
+		border-radius: 25px;
+		font-size: 25px;
+	}
+	#body #quest_board #quest_search::placeholder{
+		color:white;
+	}
+	#body #quest_board #quest_search_btn{
+		background-color: #00ff0000;
+		border:0;
+		font-size: 15px;
+		color:white;
+		margin-bottom:5px;
+	}
+	#body #quest_list_table #quest_list_table_body .mouse{
+		font-size: 25px;
+	}
+    #body #quest_list_table #quest_list_table_body .mouse:hover{
+		border-radius: 20px;
+		border:2px solid white; 
+		background:rgba(255,255,255,0.23);
+	}
+	#body #quest_list_table #quest_list_table_body .mouse .questlist_title:hover{
+		text-decoration:underline;
+	}
+
+	#foot .page_btn{
+		border:0;
+		margin-left:5px;
+		padding-left:10px;
+		padding-right:10px;
+		font-size:25px;
+		cursor:pointer;
+	}
+	#foot #page_btn1{
+		background-color: #B1B1B1;
+		color:black;
+		margin:0;
+	}
+	#foot #page_btn2,#page_btn3,#page_btn4,#page_btn5{
+		background-color: #00ff0000;
+		color:white;
+	}

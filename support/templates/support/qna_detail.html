@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% load static %}
+	<meta charset="utf-8">
+	<title>효자손</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'support/css/qna_detail.css' %}">
+	<style>
+		html, body{
+		width:100%;
+		height:100%;
+		padding:0;
+		margin:0;
+		background-color: gainsboro;
+		box-sizing: border-box;
+		background:linear-gradient(-294.89deg, #30324A -0.93%, #6353C7 129.73%);
+		background-position: 100% 100%;
+		background-size: cover;
+		overflow:auto;
+		font-weight: 700;
+	}
+	</style>
+	<SCRIPT>
+		function tableChange1(){
+			document.getElementById("folder1").style.display="block";
+			document.getElementById("folder2").style.display="none";
+		}
+		function tableChange2(){
+			document.getElementById("folder1").style.display="none";
+			document.getElementById("folder2").style.display="block";
+		}
+	</SCRIPT>
+</head>
+<body>
+	<div id="head">
+      <div id="search">
+         <div style="position:relative;width:100%;">
+            <form id="search_box" method='post' action ="{% url 'mainpage' %}">{% csrf_token%}
+               <img src="https://i.ibb.co/6J04RrG/image.png" width="50" style="padding-right: 20px" onclick="location.href='{% url "mainpage" %}'">
+               <input type="text" id="search_app" name="search_app" value="{{app.appName}}" style="font-size:25px">
+               <input type="submit" id="search_btn" name="search_btn" style="font-size:40px;" value="검색하기">
+            <div style="text-align:right">
+               {% if not corp and not user %}
+               <input type="button" class="input" id="user_home_login" name="user_home_login" value="로그인" style="font-size:20px" onclick="location.href='{% url "sign-in"%}'">
+               {% endif %}
+               {% if user and not corp %}
+               <div class="input" style="display:flex;">
+               <input type="button" id="user_home_view" name="user_home_view" value="내 활동 보기" style="font-size:20px" onclick="location.href='{% url "my_page"%}'" >
+               <input type="button" id="user_home_logout" name="user_home_logout" value="로그아웃" style="font-size:20px" onclick="location.href='{% url "logout"%}'">
+               </div>
+               {% endif %}
+               {% if corp %}
+               <div class="input" style="display:flex;">
+               <input type="button" id="user_home_view" name="user_home_view" value="서비스 관리" style="font-size:20px" onclick="location.href='{% url "corp_page"%}'">
+               <input type="button" id="user_home_logout" name="user_home_logout" value="로그아웃" style="font-size:20px" onclick="location.href='{% url "logout"%}'">
+               </div>
+               {% endif %}
+            </form>
+            </div>
+         </div>  
+      </div>  
+   </div>
+   <hr style="width:95%;border: 0; height: 1px; background:rgba(255,255,255,0.43);">
+
+	<div id="main">
+		<!-- 수정 -->
+		<div style="color:white; font-size:40px; min-width: 500px; margin-bottom:15px; margin-left:5px">질문하기</div>
+		<div style="background-color:white; border-radius:10px; width:100%; height:50%; padding:30px;box-sizing: border-box; display:flex; justify-content:center;">
+			<div style="width:100%">
+				<div id="input_quest_title" name="input_quest_title" type="text" style="margin-bottom:10px; position:relative;">
+					<div>{{qna.title}}</div>
+                     {% if qna.checkAnswer == False %}
+					<div style="position:absolute; right:10px; top:10px">답변 대기</div>
+                    {% else %}
+                    <div style="position:absolute; right:10px; top:10px">답변 완료</div>
+				{% endif %}
+                </div>
+				<div style="padding:15px; height:80%">
+					<!-- 수정 -->
+					<div name="question_text" style="width:100%; height:100%; font-size:30px; border:0;overflow-y:auto;word-break:break-all;">{{qna.question}}</div>
+				</div>
+			</div>
+		</div>
+        {% if qna.checkAnswer == True and user%}
+		<div style="display:flex; justify-content:right; align-items:center;margin-top:20px">
+            <a href= {% url "qna_delete" app.appName qna.qnaId %}><input id="quest_delete" class="quest_input_btn" onclick="return confirm('삭제하시겠습니까?')" type="button" value="삭제하기"></a>
+		</div>
+{% endif %}
+ {% if qna.checkAnswer == False and user%}
+		<div style="display:flex; justify-content:right; align-items:center;margin-top:20px">
+			<a href= {% url "qna_update" app.appName qna.qnaId %}> <input id="quest_edit" class="quest_input_btn" onclick="return confirm('수정하시겠습니까?')" type="button" value="수정하기"></a>
+            <a href= {% url "qna_delete" app.appName qna.qnaId %}><input id="quest_delete" class="quest_input_btn" onclick="return confirm('삭제하시겠습니까?')" type="button" value="삭제하기"></a>
+    	</div>
+{% endif %}
+
+<br>
+        {% if qna.checkAnswer == True %}
+		<div style="color:white; font-size:40px; min-width: 500px; margin-bottom:15px; margin-left:5px">답변내용</div>
+		<div style="background-color:white; border-radius:10px; width:100%; height:50%; padding:30px;box-sizing: border-box; display:flex; justify-content:center;">
+			<div style="width:100%">
+				<!-- 수정 -->
+				<div name="answer_text" style="width:100%; height:100%; font-size:30px; border:0;overflow-y:auto;word-break:break-all;">{{qna.answer}}</div>
+			</div>
+		</div>
+        {% endif %}
+		<div style="display:flex; justify-content:right; align-items:center;margin-top:20px">
+			<input id="go_quest_list" class="quest_input_btn" type="button" value="목록으로" onclick="location.href='{% url "app_detail" app.appName %}'">
+		</div>
+	</div>
+</body>
+</html>

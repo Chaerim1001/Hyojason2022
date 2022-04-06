@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <title>효자손</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="{% static 'support/css/corp_home_list.css' %}">
+   <style>
+      html, body{
+         width:100%;
+         height:100%;
+         padding:0;
+         margin:0;
+         background-color: gainsboro;
+         box-sizing: border-box;
+         background-color: white;
+      }
+   </style>
+</head>
+<body>
+   <div id=corp_menu>
+      <img src="https://i.ibb.co/6J5csk1/image.png" onclick="location.href='{% url "mainpage" %}'" width="100" style="margin-left:5px; margin-bottom:20px; padding-left:10px;"><br>
+          <input type="button" id="app_list_btn" class="menu" value="어플 리스트" onclick="location.href='{% url "corp_page" %}';mainChange1()"style="background-color:white; color:#30324A;" ><br>
+      <input type="button" id="upload_btn" class="menu" value="게시물 업로드" onclick="location.href='{% url "fileupload" %}';mainChange2()" ><br>
+      <input type="button" id="quest_manage_btn" class="menu" value="질문 관리" onclick="location.href='{% url "qna_manage" %}'; mainChange3()"><br>
+
+      <div id="blank"></div>
+
+      <input type="button" id="logout_btn" class="menu" onclick="location.href='{% url "logout"%}'" value="로그아웃">
+      
+   </div>
+<form style="width:100%; height:100%", method="post",  action="{% url 'appedit' pk%}", enctype="multipart/form-data"}>
+{% csrf_token %}
+   <div id="main">
+      <div id="app_reg" style="height:100%">
+         <span style="font-size: 30px; min-width:120px">정보 수정</span>
+         <hr class="hr1">
+         <div style="width:30%; margin-bottom:30px;">
+            <div id="app_logo">
+               <span style="margin-right:20px; font-size: 20px;min-width:40px;">로고</span>
+               <div style="width:80%;min-width:120px;max-width:150px;overflow:hidden;border-radius:10px">
+                  <div class="b1">
+                     <div class="b2">
+                        <div class="b3">
+                           <div style="display:flex;height:100%;width:100%;align-items:center;">
+                              <div id="app_logo_box_edit">
+                              {% if app.appImage %}
+                                 <img style="width:100%;" src="{{app.appImage.url}}" alt="image here">
+                              {% else %}
+
+                              {% endif %}
+                              </div>
+                           </div>
+               {% comment %} <div style="height:150px;margin-left:15px;display: flex;justify-content: center;align-items: center;">
+               </div> {% endcomment %}
+                        </div>
+                     </div>
+                  </div>
+                  
+               </div>
+               <input style="margin-left:20px; min-width:145px;" type="file" name="appimage">
+            </div>
+         </div>
+         <hr class="hr2">
+         <div id="app_name_edit">
+            <div style="margin-right:20px;min-width:65px;">어플 이름</div>
+            <input type="text" Required name="appName" value=" {{app.appName}}">
+         </div>
+         <hr class="hr2">
+         <div id="app_category_edit">
+            <div style="margin-right:20px;min-width:95px;">어플 카테고리</div>
+            <input type="text" Required name="category" value="{{ app.category }}">
+         </div>
+         <hr class="hr2">
+         <div id="app_service_edit">
+            <div style="margin-right:20px;min-width:80px;">서비스 설명</div>
+            <input type="text" Required name="appExplain" value="{{app.appExplain}}">
+         </div>
+         <div id="app_reg_box_edit">
+            <button type="submit" id="app_reg_btn_edit" name="app_reg_btn_edit">수정하기</button>
+         </div>
+      </div>
+   </div>
+</form>
+</body>
+</html>

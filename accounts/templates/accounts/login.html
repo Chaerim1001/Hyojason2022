@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    {% load static %}
+  
+		<title>효자손</title>
+		<meta charset="utf-8">
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">
+
+		<style>
+			html, body{
+				width:100%;
+				height:100%;
+				padding:0;
+				margin:0;
+				box-sizing: border-box;
+				background:linear-gradient(-294.89deg, #30324A -0.93%, #6353C7 129.73%);
+				background-repeat:no-repeat;
+			}
+		</style>
+		<SCRIPT>
+			function colorChange1(){
+				var btn1=document.getElementById("btn1");
+				var btn2=document.getElementById("btn2");
+				var pic1=document.getElementById("pic1");
+				var pic2=document.getElementById("pic2");
+
+				if(btn1.style.color=="white"){
+					// btn1.style.backgroundColor="#30324A";
+					// btn1.style.color="white";
+				}else{
+					if(btn2.style.color==="white"){
+						btn2.style.color="#F0FFFF";
+						btn2.style.backgroundColor="#30324A";
+					}
+					btn1.style.color="white";
+					btn1.style.backgroundColor="rgba(48,50,74,0.45)";
+				}
+				document.getElementById("sign_user").style.display="block";
+				document.getElementById("login_user").style.display="block";
+				document.getElementById("sign_corp").style.display="none";
+				document.getElementById("login_corp").style.display="none";
+				pic1.style.display="block";
+				pic2.style.display="none";
+			}
+				
+			function colorChange2(){
+				var btn3=document.getElementById("btn1");
+				var btn4=document.getElementById("btn2");
+				var pic3=document.getElementById("pic3");
+				var pic4=document.getElementById("pic4");
+
+				if(btn4.style.color=="white"){
+					// btn4.style.backgroundColor="#30324A";
+					// btn4.style.color="white";
+				}else{
+					if(btn3.style.color==="white"){
+						btn3.style.backgroundColor="#30324A";
+						btn3.style.color="#F0FFFF";
+					}
+					btn4.style.backgroundColor="rgba(48,50,74,0.45)";
+					btn4.style.color="white";
+				}
+
+				document.getElementById("sign_user").style.display="none";
+				document.getElementById("login_user").style.display="none";
+				document.getElementById("sign_corp").style.display="block";
+				document.getElementById("login_corp").style.display="block";
+				pic1.style.display="none";
+				pic2.style.display="block";
+			}
+
+         
+		</SCRIPT>
+                
+  
+	</head>
+
+	<body>
+		<div id="body">
+       
+			<div id="login_logo">
+				<img src="https://i.ibb.co/6J5csk1/image.png" onclick="location.href='{% url "mainpage" %}'" >
+			</div>
+			<div style="display:flex; justify-content: center;align-items: center;">
+				<div id="login_main">
+					<div id="select_member">
+						<input type="button" id="btn1" class="button1" value="일반인" style="background:rgba(48,50,74,0.45); color:white;" onclick='colorChange1()'>
+						<input type="button" id="btn2" class="button1" value="기업" style="background-color: #30324A; color:#F0FFFF;" onclick='colorChange2()'>
+					</div>
+					<div class="login_form">
+                    
+   
+						<form method="post" id="sign_user" action="">{% csrf_token %}
+							<div>
+								<span style="font-size:20px;" for="userid">아이디</span><br>
+								<input style="margin-bottom:3%;font-size:15px" id="userid" name="userid" type="text" placeholder="아이디를 입력해주세요"required autofocus>
+								<br>
+								<span style="margin-bottom:3%; font-size:20px" for="userpw">비밀번호</span><br>
+								<input style="margin-bottom:3%;font-size:15px" id="userpw"name="userpw"type="password" placeholder="비밀번호를 입력해주세요"required>
+							</div>
+							<div style="width:100%; display:flex;justify-content: center;margin-top:20px">
+								<button class="login_btn" name="sign_user" style="font-size:15px" type="submit" >로그인하기</button>
+							</div>
+						</form>
+
+						<form method="post" id="sign_corp" action="">{% csrf_token %}
+							<div>
+								<span style="font-size:20px;" for="corpid">아이디</span><br>
+								<input style="margin-bottom:3%; font-size:15px;" name="corpid" id="corpid" type="text" placeholder="아이디를 입력해주세요"required autofocus>
+								<br>
+								<span style="margin-bottom:3%; font-size:20px;" for="corppw">비밀번호</span><br>
+								<input style="margin-bottom:3%; font-size:15px;" id="corppw"  name="corpwd" type="password" placeholder="비밀번호를 입력해주세요"required>
+							</div>
+							<div style="width:100%; display:flex;justify-content: center;margin-top:20px">
+								<button class="login_btn" style="font-size:15px"  name="sign_corp" type="submit" >로그인하기</button>
+							</div>
+						</form>	
+						<br>
+					</div>
+					<div id="foot">
+						<div>
+							<span>아직 회원이 아니신가요?</span>
+							<span style="line-height:200%"><br></span>
+							<a id="login_corp" class="to_reg" href="{% url 'sign-up-company' %}" >회원가입하기</a>
+							
+							<a id="login_user" class="to_reg" href="{% url 'sign-up-user' %}">회원가입하기</a>
+						</div>
+					</div>
+					<img src="https://i.ibb.co/0Y8tM8R/1.png" id="pic1" style="position:absolute;bottom:0;left:-190px;z-index:0">
+					<img src="https://i.ibb.co/4WbrkvX/1.png" id="pic2" style="position:absolute;bottom:0;right:-170px;z-index:0;display:none">
+				</div>
+			</div>
+		</div>		
+	</body>
+</html>

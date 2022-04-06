@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>효자손</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'support/css/corp_home_list.css' %}">
+	<style>
+		html, body{
+			width:100%;
+			height:100%;
+			padding:0;
+			margin:0;
+			background-color: gainsboro;
+			box-sizing: border-box;
+			background-color: white;
+		}
+	</style>
+</head>
+<body>
+	<div id=corp_menu>
+		<img src="https://i.ibb.co/6J5csk1/image.png" onclick="location.href='{% url "mainpage" %}'" width="100" style="margin-left:5px; margin-bottom:20px; padding-left:10px;"><br>
+		<input type="button" id="app_list_btn" class="menu" value="어플 리스트" onclick='location.href="corp_home_list.html";mainChange1()' style="background-color:white; color:#30324A;"><br>
+		<input type="button" id="upload_btn" class="menu" value="게시물 업로드" onclick='location.href="corp_item_upload.html";mainChange2()'><br>
+		<input type="button" id="quest_manage_btn" class="menu" value="질문 관리" onclick='location.href="corp_quest_manage.html"; mainChange3()'><br>
+
+		<div id="blank"></div>
+
+		<input type="button" onclick="location.href='{% url "logout"%}'" id="logout_btn" class="menu" value="로그아웃">
+		
+	</div>
+	<div id="main">
+		<div id="app_reg" style="height:100%">
+			<span style="font-size: 30px">정보 수정</span>
+			<hr class="hr1">
+			<div id="app_logo">
+				<div style="display:flex;height:100%;">
+					<span style="margin-right:20px; font-size: 20px;">로고</span>
+					<div id="app_logo_box_edit">
+						<img src="https://i.ibb.co/82MFg7q/folder.png">
+						<input type="button" id="app_logo_upload_edit_btn" name="app_logo_upload_edit_btn" value="사진업로드">
+					</div>
+				</div>
+			</div>
+			<hr class="hr2">
+			<div id="app_name_edit">
+				<div style="margin-right:20px">어플 이름</div>
+				<input type="text" id="app_name_input_edit" name="app_name_edit" placeholder="어플 이름 입력">
+			</div>
+			<hr class="hr2">
+			<div id="app_category_edit">
+				<div style="margin-right:20px">어플 카테고리</div>
+				<select id="category_edit" name="category_edit" required autofocus>
+					<option name="video" value="동영상 및 사진 서비스">동영상 및 사진 서비스</option>
+					<option name="bank" value="금융 서비스">금융 서비스</option>
+					<option name="sns" value="소통 서비스">소통 서비스</option>
+					<option name="shopping" value="쇼핑 서비스">쇼핑 서비스</option>
+					<option name="benefit" value="혜택 서비스">혜택 서비스</option>
+					<option name="health" value="건강 서비스">건강 서비스</option>
+					<option name="map" value="지도 서비스">지도 서비스</option>
+					<option name="etc" value="기타 서비스">기타 서비스</option>
+				</select>
+			</div>
+			<hr class="hr2">
+			<div id="app_service_edit">
+				<div style="margin-right:20px">서비스 설명</div>
+				<input type="text" id="app_service_input_edit" name="app_service_edit" placeholder="간단한 서비스 설명을 입력해주세요">
+			</div>
+			<div id="app_reg_box_edit">
+				<input type="button" id="app_reg_btn_edit" value="등록하기">
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+
+{% block content %}
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        {{ update_file_form.as_p }}
+        <button type="submit">수정하기</button>
+    </form>
+</div>
+{% endblock%}

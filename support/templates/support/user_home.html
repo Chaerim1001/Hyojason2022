@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+     {% load static %}
+	<title>효자손</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'support/css/user_home.css' %}">
+	<style>
+		html, body{
+		width:100%;
+		height:100%;
+		padding:0;
+		margin:0;
+		background-color: gainsboro;
+		box-sizing: border-box;
+		background:linear-gradient(-294.89deg, #30324A -0.93%, #6353C7 129.73%);
+		background-position: 100% 100%;\
+		background-size: cover;
+		overflow:auto;
+	}
+	</style>
+</head>
+<body>
+	<div id="head">
+      <img src="https://i.ibb.co/6J04RrG/image.png" width="50" style="padding-top:10px" onclick="location.href='{% url "mainpage" %}'">
+        {% if not corp and not user %}
+        <input type="button" class="input" style="font-size:20px;" id="user_home_login" name="user_home_login" value="로그인" onclick="location.href='{% url "sign-in"%}'">
+      {% endif %}
+        {% if user %}
+        <div class="input" style="display:flex;">
+        <input type="button" id="user_home_view" name="user_home_view" style="font-size:20px; padding-right:20px" value="내 활동 보기" onclick="location.href='{% url "my_page"%}'" >
+        <input type="button" id="user_home_logout" name="user_home_logout" style="font-size:20px" value="로그아웃" onclick="location.href='{% url "logout"%}'">
+        </div>
+        {% endif %}
+        {% if corp %}
+        <div class="input" style="display:flex;">
+        <input type="button" id="user_home_view" name="user_home_view" style="font-size:20px" value="서비스 관리" onclick="location.href='{% url "corp_page"%}'">
+        <input type="button" id="user_home_logout" name="user_home_logout" style="font-size:20px" value="로그아웃" onclick="location.href='{% url "logout"%}'">
+        </div>
+        {% endif %}
+
+	</div>
+	<div id="search">
+      <div style="width:83%;padding-left:4%;height:100%">
+         <div style="width:100%; word-break:keep-all; font-size:30px;color:white">어떤 어플의<br>사용법이 궁금하세요?</div>
+         <div id="search_box">
+            <form style="display:flex;width:100%;" method='post' >{% csrf_token %} 
+               <div style="position:relative;width:85%;">
+                  <input type="text" id="search_app" name="search_app" style="position:relative;z-index:1;">
+                  <img id="search_img" src="https://i.ibb.co/ZMbdmR1/13.png" width="200" style="z-index:0;">
+               </div>
+               <input type="submit" id="search_btn" name="search_btn" style="font-size:40px" value="검색하기">
+            </form>
+            <script>
+               const $input_01=document.getElementById('search_app');
+               $input_01.focus();
+               $input_01.color="white";
+            </script>
+         </div>
+      </div>
+   </div>
+	<div id="main" style="display: block">
+		<div id="box">
+			<div class="body">
+				<div id="context">
+					<div style="width:80%; min-width: 500px">
+						<div style="font-size:20px;">어플 사용법 살펴보기</div>
+						<div >
+							<div id="app">
+								<div class="app_card" onclick="location.href='{% url "category" media  %}'">
+									<div class="app_img_box">
+										<img class="app_img" src="https://i.ibb.co/cvrJ16J/camera.png">
+									</div>
+									<span class="app_text">동영상 및 사진 서비스 ></span>
+								</div>
+								<div class="app_card" onclick="location.href='{% url "category" finance %}'">
+									<div class="app_img_box">
+										<img class="app_img" src="https://i.ibb.co/G26jkkT/bank.png">
+									</div>
+									<span class="app_text">금융 서비스 ></span>
+								</div>
+								<div class="app_card" onclick="location.href='{% url "category" sns %}'">
+									<div class="app_img_box">
+										<img class="app_img" src="https://i.ibb.co/2Fp2mdx/sns.png">
+									</div>
+									<span class="app_text">소통 서비스 ></span>
+								</div>
+								<div class="app_card" onclick="location.href='{% url "category" benefit %}'">
+									<div class="app_img_box">
+										<img class="app_img" src="https://i.ibb.co/F79jjTx/benefit.png">
+									</div>
+									<span class="app_text">혜택 서비스 ></span>
+								</div>
+								<div class="app_card" onclick="location.href='{% url "category" health%}'">
+									<div class="app_img_box">
+										<img class="app_img" src="https://i.ibb.co/x8hh56H/health.png">
+									</div>
+									<span class="app_text">건강 서비스 ></span>
+								</div>
+								<div class="app_card" onclick="location.href='{% url "category" map %}'">
+									<div class="app_img_box">
+										<img class="app_img" src="https://i.ibb.co/G5dzw2q/map.png">
+									</div>
+									<span class="app_text">지도 서비스 ></span>
+								</div>
+								<div class="app_card" onclick="location.href='{% url "category" shopping %}'">
+									<div class="app_img_box">
+										<img class="app_img" src="https://i.ibb.co/F3wW9Pt/shopping.png">
+									</div>
+									<span class="app_text">쇼핑 서비스 ></span>
+								</div>
+								<div class="app_card" onclick="location.href='{% url "category" others %}'">
+									<div class="app_img_box">
+										<img class="app_img" src="https://i.ibb.co/9tGnQR8/etc.png">
+									</div>
+									<span class="app_text">기타 서비스 ></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<hr style="height: 550px;">
+					<div id="recent">
+						<span style="font-size:20px">인기 어플</span>
+                  <div id="list_box">
+                     <div id='list'>
+                     {% if app %}
+                           {% for apps in app %}
+                        <div class="recent_card" style="cursor:pointer;" onclick="location.href='{% url "app_detail" apps.appName %}'">
+                        
+                           <img class="app_img" src="{{ apps.get_image_url }}"><br>
+                           <span class="recent_text">{{ apps.appName }}</span>
+                        </div>
+                        {% endfor %}
+                     {% endif %}
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</body>
+</html>

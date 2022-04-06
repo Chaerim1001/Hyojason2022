@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <title>효자손</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="{% static 'support/css/corp_home_list.css' %}">
+   <style>
+      html, body{
+         width:100%;
+         height:100%;
+         padding:0;
+         margin:0;
+         background-color: gainsboro;
+         box-sizing: border-box;
+         background-color: white;
+      }
+   </style>
+</head>
+<body>
+   <div id=corp_menu>
+      <img src="https://i.ibb.co/6J5csk1/image.png" onclick="location.href='{% url "mainpage" %}'" width="100" style="margin-left:5px; margin-bottom:20px; padding-left:10px;"><br>
+          <input type="button" id="app_list_btn" class="menu" value="어플 리스트" onclick="location.href='{% url "corp_page" %}';mainChange1()"style="background-color:white; color:#30324A;" ><br>
+      <input type="button" id="upload_btn" class="menu" value="게시물 업로드" onclick="location.href='{% url "fileupload" %}';mainChange2()" ><br>
+      <input type="button" id="quest_manage_btn" class="menu" value="질문 관리" onclick="location.href='{% url "qna_manage" %}'; mainChange3()"><br>
+      <div id="blank"></div>
+
+      <input type="button" id="logout_btn" class="menu" onclick="location.href='{% url "logout"%}'" value="로그아웃">
+      
+   </div>
+<form style="width:100%; height:100%", method="post", action="{% url 'appupload' %}" enctype="multipart/form-data"}>
+{% csrf_token %}
+    <div id="main">
+        <div id="app_reg" style="height:100%">
+            <span style="font-size: 30px;min-width:120px">어플 등록</span>
+            <hr class="hr1">
+            <div style="width:30%">
+                <div id="app_logo">
+                    <span style="margin-right:20px; font-size: 20px;width:25%;min-width:40px">로고</span>
+                    <div style="width:80%;min-width:120px;overflow:hidden;border-radius:10px">
+                        <div class="b1">
+                            <div class="b2">
+                                <div class="b3">
+                                    <div style="display:flex;height:100%;width:100%;align-items:center;">
+                                        <div id="app_logo_box">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        {% comment %} <img src="https://i.ibb.co/82MFg7q/folder.png"> {% endcomment %}
+                        <div style="height:150px;margin-left:15px;display: flex;justify-content: center;align-items: center;">
+                            <div>
+                                {{app_upload_form.appImage}}
+                                <div style="color:red;margin-left:5px;margin-top:5px;">1:1 로고 사진을 넣어주세요</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="margin-top:20px"class="hr2">
+            <div id="app_name">
+                <div style="margin-right:20px;min-width:65px">어플 이름</div>
+                {{app_upload_form.appName}}
+            </div>
+            <hr class="hr2">
+            <div id="app_category">
+                <div style="margin-right:20px; min-width:95px">어플 카테고리</div>
+                {{app_upload_form.category}}
+            </div>
+            <hr class="hr2">
+            <div id="app_service">
+                <div style="margin-right:20px; min-width:80px">서비스 설명</div>
+                {{app_upload_form.appExplain}}
+            </div>
+            <div id="app_reg_box">
+                <button type="submit" id="app_reg_btn" name="app_reg_btn">등록하기</button>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

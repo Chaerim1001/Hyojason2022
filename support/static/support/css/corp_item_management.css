@@ -1,0 +1,92 @@
+	html, body{
+		width:100%;
+		height:100%;
+		padding:0;
+		margin:0;
+		background-color: gainsboro;
+		box-sizing: border-box;
+		background-color: white;
+	}
+
+	*{
+		font-family:'Noto Sans KR', sans-serif;
+		font-weight: 900;
+	}
+	::-webkit-scrollbar{
+		width:5px;
+	}
+	::-webkit-scrollbar-thumb {
+		background-color: #c8c8c8;
+	}
+	#main{
+		overflow: auto;
+	}
+	#main #basic_table{
+		text-align: center;
+		font-size: 15px;
+		width:100%;
+		border-collapse:collapse;
+	}
+	#main #basic_table #basic_table_head{
+		background-color: #30324A;
+		color:white;
+	}
+	#main #basic_table_body{
+		background-color: #EDEDED;
+		overflow: auto;
+		text-align: center;
+		font-size: 15px;
+		width:100%;
+	}
+	#main #basic_table_body tr{
+		height:50px;
+		overflow: hidden;
+	}
+	#main #basic_table_body tr td{
+		max-width:25px;
+		width:12.5%;
+	}
+	#main #basic_table_body .basic_table_btn{
+		width:100%;
+		background-color: #4E4693; 
+		color:white;
+		font-weight: 400;
+		border:10px white;
+		padding:2px;
+		padding-left: 2%;
+		padding-right:2%;
+	}
+	#main #etc_table{
+		text-align: center;
+		font-size: 15px;
+		width:100%;
+		border-collapse:collapse;
+	}
+	#main #etc_table #etc_table_head{
+		background-color: #30324A;
+		color:white;
+	}
+	#main #etc_table_body{
+		background-color: #EDEDED;
+		border:0;
+		/*overflow:hidden;*/
+		text-align: center;
+		font-size: 15px;
+		width:100%;
+	}
+	#main #etc_table_body tr{
+		height:50px;
+	}
+	#main #etc_table_body tr td{
+		max-width:25px;
+	}
+	#main #etc_table_body .etc_table_btn{
+		width:100%;
+		background-color: #4E4693; 
+		color:white;
+		font-weight: 400;
+		border:10px white;
+		padding:2px;
+		padding-left: 2%;
+		padding-right:2%;
+	}

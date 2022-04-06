@@ -1,0 +1,242 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>효자손</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="{% static 'support/css/app_detail.css' %}">
+   <style>
+      html, body{
+         width:100vw;
+         height:100%;
+         padding:0;
+         margin:0;
+         background-color: gainsboro;
+         box-sizing: border-box;
+         background:linear-gradient(-294.89deg, #30324A -0.93%, #6353C7 129.73%);
+         background-position: 100% 100%;
+         background-size: cover;
+         overflow-y:auto;
+         overflow-x:hidden;
+         font-weight: 700;
+      }
+      *{
+         font-family:'Noto Sans KR', sans-serif;
+      }
+      ::-webkit-scrollbar{
+      width:5px;
+      height:6px;
+      }
+      ::-webkit-scrollbar-thumb {
+         background-color: #c8c8c8;
+      }
+   </style>
+   <SCRIPT>
+      function tableChange1(){
+         document.getElementById("folder1").style.display="block";
+         document.getElementById("folder2").style.display="none";
+      }
+      function tableChange2(){
+         document.getElementById("folder1").style.display="none";
+         document.getElementById("folder2").style.display="block";
+      }
+   </SCRIPT>
+</head>
+<body>
+   <div id="head">
+      <div id="search">
+         <div style="position:relative;width:100%;">
+            <form id="search_box" method='post' action ="{% url 'mainpage' %}">{% csrf_token%}
+               <img src="https://i.ibb.co/6J04RrG/image.png" width="50" style="padding-right: 20px" onclick="location.href='{% url "mainpage" %}'">
+               <input type="text" id="search_app" name="search_app" value="{{app.appName}}" style="font-size:25px">
+               <input type="submit" id="search_btn" name="search_btn" value="검색하기">
+            <div style="text-align:right">
+               {% if not corp and not user %}
+               <input type="button" class="input" id="user_home_login" name="user_home_login" value="로그인" style="font-size:20px" onclick="location.href='{% url "sign-in"%}'">
+               {% endif %}
+               {% if user and not corp %}
+               <div class="input" style="display:flex;">
+               <input type="button" id="user_home_view" name="user_home_view" value="내 활동 보기" style="font-size:20px" onclick="location.href='{% url "my_page"%}'" >
+               <input type="button" id="user_home_logout" name="user_home_logout" value="로그아웃" style="font-size:20px" onclick="location.href='{% url "logout"%}'">
+               </div>
+               {% endif %}
+               {% if corp %}
+               <div class="input" style="display:flex;">
+               <input type="button" id="user_home_view" name="user_home_view" value="서비스 관리" style="font-size:20px" onclick="location.href='{% url "corp_page"%}'">
+               <input type="button" id="user_home_logout" name="user_home_logout" value="로그아웃" style="font-size:20px" onclick="location.href='{% url "logout"%}'">
+               </div>
+               {% endif %}
+            </form>
+            </div>
+         </div>  
+      </div>  
+   </div>
+   <hr style="width:95%;border: 0; height: 1px; background:rgba(255,255,255,0.43);">
+   <div id="body">
+      <div class="search_app_card">
+         <div class="search_app_img_box">
+            <div class="search_img_card">
+               <div style="width:20%;overflow:hidden;border-radius:10px">
+                  <div class="b1">
+                     <div class="b2">
+                        <div class="b3">
+                           <img class="search_app_img" src="{{ app.get_image_url }}">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div style="position:relative;width:100%">
+                  <div id="search_app_name">{{app.appName}}</div>
+                     <div style="width:50%;word-break:keep-all;height:50%;font-size:25px; margin-left: 20px;position:absolute;bottom:5px;font-weight: 400;">{{ app.appExplain }}</div>
+               </div>
+                  <div style="font-size:15px;position:absolute;top:0px;right:10px;font-weight: 400">조회수 {{app.hits}}</div>
+                    
+            </div>
+         </div>
+      </div>
+      <div id="folder1">
+         <div id="app_table1" style="position: relative;">
+            <img src="https://i.ibb.co/WfgmMR8/background.png" style="width:100%;">
+            <img src="https://i.ibb.co/Jt0tbHG/forder.png" style="width:100%;position:absolute;">
+            <div style="position:absolute;top:5px; display: flex; justify-content: center;align-items:center; width:93%; height:15%; font-size:30px">
+               <div id="func1_btn1" style="width:50%; text-align:center; cursor:pointer;" onclick='tableChange1()'>기본 기능 배워보기</div>
+               <div id="func1_btn2" style="width:50%; text-align:center; cursor:pointer;" onclick='tableChange2()'>부가 기능 배워보기</div>
+            </div>
+            <div style="position:absolute;bottom:3px;width:93%; height:70%; margin-bottom:10px; display:flex; align-items: center; overflow-x:auto; justify-content:center;">
+               <div style="display:flex; align-items: center; overflow-x:auto;height:100%">
+                  <div style="display:flex; justify-content:center;align-items:center;height:100%">
+                     <div style="display:flex;justify-content: center;align-items:center; height:100%">
+
+                                {% for guide in guidelines%}
+                                    {% if guide.is_Basic == 1 %}
+                                    {% if guide.order == 1%}
+                                <div class="table1_card">
+                           <div class="table1_box" onclick="location.href='{% url "guidelineview" app.appId guide.funcName %}'">
+                              <div class="table1_box_card">
+                                 <div id="table1_app_name">{{guide.funcName}}</div>
+                              </div>
+                           </div>
+                        </div>
+
+                                    {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="folder2" style="display:none">
+         <div id="app_table2" style="position: relative;">
+            <img src="https://i.ibb.co/WfgmMR8/background.png" style="width:100%;">
+            <img src="https://i.ibb.co/jRg1Wtk/forder2.png" style="width:100%;position:absolute;">
+            <div style="position:absolute;top:5px; display: flex; justify-content: center;align-items:center; width:93%; height:15%; font-size:30px">
+               <div id="func1_btn2" style="width:50%; text-align:center; cursor:pointer;" onclick='tableChange1()'>기본 기능 배워보기</div>
+               <div id="func1_btn2" style="width:50%; text-align:center; cursor:pointer;" onclick='tableChange2()'>부가 기능 배워보기</div>
+            </div>
+            <div style="position:absolute;bottom:3px;width:93%; height:70%; margin-bottom:10px; display:flex; align-items: center; overflow-x:auto; justify-content:center;">
+               <div style="display:flex; align-items: center; overflow-x:auto;height:100%">
+                  <div style="display:flex; justify-content:center;align-items:center;height:100%">
+                     <div style="display:flex;justify-content: center;align-items:center; height:100%">
+                                {% for guide in guidelines%}
+                                    {% if guide.is_Basic == 0 %}
+                                    {% if guide.order == 1%}
+                        <div class="table2_card" >
+                           <div class="table2_box" onclick="location.href='{% url "guidelineview" app.appId guide.funcName %}'">
+                              <div class="table2_box_card">
+                                 <div id="table2_app_name">{{guide.funcName}}</div>
+                              </div>
+                           </div>
+                        </div>
+                                    {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="recent_quest" style="margin-top:110px;color:white;position:relative;">
+         <div style="display: flex; position: relative;">
+            <div style="font-size: 55px; margin-bottom: 10px;">최근 질문</div>
+             {% if user and not corp %}
+            <input type="button" id="quest_btn" name="quest_btn" onclick="location.href='{% url "qna_create" app.appName %}'" value="질문하기 >" style="position:absolute; right:0; bottom:5px; font-weight: 700; font-size:40px;cursor:pointer">
+            {% elif not user and corp %}
+             <input type="button" id="quest_btn" name="quest_btn" onclick="alert('질문은 일반 사용자만 가능합니다.')" value="질문하기 >" style="position:absolute; right:0; bottom:5px; font-weight: 700; font-size:40px;cursor:pointer">
+            {% else %}
+            <input type="button" id="quest_btn" name="quest_btn" onclick="alert('로그인을 해주세요.')" value="질문하기 >" style="position:absolute; right:0; bottom:5px; font-weight: 700; font-size:40px;cursor:pointer">            
+            {%endif%}
+
+        
+         </div>
+         <div style="border-radius: 15px; background-color:#47417C; height:200px; display: flex; align-items: center;font-size:25px">
+            <table id="quest_table" style="width:100%;border-collapse: collapse;">
+               <tbody id="quest_table_body">
+                  <style>td{padding:15px;border:none;} .state{text-align: right}</style>
+                        {% for qna in qnas %}
+                        
+                  <tr class="solid" onclick="location.href='{% url "qna_detail" app.appName qna.qnaId %}'">
+                     <td id="quest_table_cate1">{{qna.q_personId}}</td>
+                     <td id="quest_table_title" >{{qna.title}}</td>
+                            {% if qna.checkAnswer == False %}
+                     <td class="state">답변대기</td>
+                            {% else %}
+                            <td class="state">답변완료</td>
+                            {% endif %}
+                  </tr>
+                        
+                        {% endfor %}
+               </tbody>
+            </table>
+         </div>
+         <input type="button" id="go_quest_btn" name="go_quest_btn" onclick="location.href='{% url "qnaboard" app.appName %}'" value="질문게시판 >" style="font-weight:700;background-color: #00ff0000;border:0;color:white;font-size:40px;cursor:pointer;position:absolute;bottom:-60px;right:0">
+      </div>
+      <div style="display: flex; justify-content: right; margin-top: 10px; min-width:630px;">
+   </div>
+
+      <div id="recommend_main">
+         <div id="recommend_box">
+            <div class="recommend_body">
+               <div id="recommend_context">
+                  <div style="width:100%">
+                     <div style="font-size:55px; margin-bottom: 10px">비슷한 어플 추천</div>
+                     
+                <div id="recommend_view" style="">
+                     {% if similar_app %}
+                        {% for similar_apps in similar_app %}
+                           
+                        <div class="recommend_app_card" onclick="location.href='{% url "app_detail" similar_apps.appName %}'">
+                           <div class="recommend_app_img_box">
+                                <div class="recommend_img_card">
+                           <div style="width:30%">
+                                <div class="box1">
+                                 <div class="box2">
+                                       <div class="box3">
+                                                   <img class="recommend_app_img" src="{{ similar_apps.get_image_url }}">
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                                 <div id="recommend_app_name">{{similar_apps.appName}}</div>
+                              </div>
+                              <div style="height:90px" class="recommend_app_text">{{similar_apps.appExplain}}</div>
+                           </div>
+                        </div>
+
+                           {% endfor %}
+                     {% endif %}
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>   
+   </div>
+</body>
+</html>

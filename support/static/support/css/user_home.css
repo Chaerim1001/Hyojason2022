@@ -1,0 +1,265 @@
+
+   html, body{
+    width:100%;
+    padding:0;
+    margin:0;
+    background-color: gainsboro;
+    box-sizing: border-box;
+    background:linear-gradient(-294.89deg, #30324A -0.93%, #6353C7 129.73%);
+    background-repeat:no-repeat;
+ }
+ *{
+    font-family:'Noto Sans KR', sans-serif;
+ }
+ ::-webkit-scrollbar{
+    width:5px;
+ }
+ ::-webkit-scrollbar-thumb {
+    background-color: #c8c8c8;
+ }
+ body{
+    overflow: auto;
+ }
+ #head{
+    display: flex;
+    align-items: center;
+    position:relative;
+    padding:10px;
+    padding-left: 30px;
+ }
+ #head .input{
+    position:absolute;
+    right: 50px;
+    border:0;
+    background-color: #00ff0000;
+    color:white;
+    font-size: 15px;
+    cursor: pointer;
+ }
+ #head .input input{
+    border:0;
+    background-color: #00ff0000;
+    color:white;
+    font-size: 15px;
+    cursor: pointer;
+ }
+ #search{
+    width:100%;
+    height:20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ #search #search_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    width:100%;
+ }
+ #search #search_box #search_app{
+    width:98%;
+    font-size:20px;
+    border:0;
+    padding:13px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background:rgba(255,255,255,0.43);
+    color:white;
+    
+ }
+ #search #search_box #search_app::placeholder{
+    color:white;
+ }
+ #search #search_box #search_btn{
+    width:15%;
+    font-size: 20px;
+    border:0;
+    background-color: #00ff0000;
+    cursor: pointer;
+    color:white;
+ }
+ #search #search_box #search_btn:hover{
+    text-decoration: underline;
+ }
+ #search #search_img{
+    position:absolute;
+    top:-70px;
+    right:30px;
+ }
+ #main{
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+ }
+ #main #box{
+    height:100%;
+    width:100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ #main #box .body{
+    height:100%;
+    width:90%;
+    padding-left:110px;
+    padding-right:110px;
+    padding-top:60px;
+    padding-bottom: 60px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ #main #box .body #context{
+    height:100%;
+    text-align: left;
+    display: flex;
+    color: white;
+ }
+ #main #box .body #app{
+    flex-wrap: wrap;
+    display: flex;
+ }
+ #main #box .body #app .app_card{
+    border-radius:5px;
+    width:30%;
+    margin-bottom:10px;
+    margin-top:18px;
+    margin-right:15px;
+    text-align: center;
+ }
+ #main #box .body #app .app_card .app_img_box{
+    background-color: white;
+    height: 60%;
+    padding:14%;
+    padding-left:0;
+    padding-right:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    background:rgba(255,255,255,0.43);
+    border-radius: 20px;
+    cursor:pointer;
+ }
+ #main #box .body #app .app_card .app_img_box:hover{
+    border:2px solid white;
+ }
+ #main #box .body #app .app_card .app_text{
+    color:white;
+ }
+ #main #box .body #app .app_card .app_img{
+    min-height: 40px;
+    height:63%;
+    width:50%;
+ }
+ #main #box .body #app .app_card .app_text{
+    font-size:15px;
+ }
+ #main #box .body #recent{
+    margin-left: 20px;
+ }
+ #main #box .body #recent #list_box{
+    width:100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top:20px;
+ }
+ #main #box .body #recent #list{
+    background:rgba(255,255,255,0.43);
+    height:90%;
+    padding:10px;
+    border-radius: 15px;
+    text-align: center;
+    margin:0 auto;
+ }
+ #main #box .body #recent #list .recent_card{
+    border-radius:5px;
+    padding:5px;
+    text-align: center;
+    min-width: 70px;
+    max-width: 130px;
+    margin-bottom: 10px;
+ }
+ #main #box .body #recent #list .recent_card img{
+    width:100%;
+ }
+
+ #category_main{
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+ }
+ #category_main #category_box{
+    height:100%;
+    width:100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ #category_main #category_box .category_body{
+    height:100%;
+    width:100%;
+    padding-top:60px;
+    padding-bottom: 60px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ #category_main #category_box .category_body #category_context{
+    height:100%;
+    text-align: left;
+    display: flex;
+    color: white;
+ }
+ #category_main #category_box .category_body #category_context #app_view{
+    width:100%;
+    min-width: 620px;
+    max-width: 720px;
+ }
+ #category_main #category_box .category_body #category_context #app_view .category_app_card{
+    border-radius:5px;
+    width:30%;
+    margin-bottom:10px;
+    margin-top:18px;
+    margin-right:15px;
+ }
+ #category_main #category_box .category_body #category_context #app_view .category_app_card .category_app_img_box{
+    background-color: white;
+    height: 65%;
+    padding:20px;
+    padding-left:0;
+    padding-right:0;
+    margin-bottom: 5px;
+    background:rgba(255,255,255,0.43);
+    border-radius: 20px;
+    cursor:pointer;
+ }
+ #category_main #category_box .category_body #category_context #app_view .category_app_card .category_app_img_box .category_img_card img{
+    width:45%;
+ }
+ #category_main #category_box .category_body #category_context #app_view .category_app_card .category_app_img_box .category_img_card{
+    display: flex;
+    justify-content: center;
+ }
+ #category_main #category_box .category_body #category_context #app_view .category_app_card .category_app_img_box .category_img_card #category_app_name{
+    margin-left: 10px;
+    font-size: 23px
+ }
+ #category_main #category_box .category_body #category_context #app_view .category_app_card .category_app_img_box:hover{
+    border:2px solid white;
+ }
+ #category_main #category_box .category_body #category_context #app_view .category_app_card .category_app_text{
+    margin-top: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    color:white;
+    overflow: auto;
+ }

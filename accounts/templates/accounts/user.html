@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+   <title>효자손</title>
+   <meta charset="utf-8">
+
+   <style>
+      #box{
+         margin:0 auto;
+         width: 600px;
+      }
+      #box #welcome{
+         float : left;
+      }
+
+      #box #register_user{
+         float:right;
+         background-color: #c8c8c8;
+         padding-top: 20px;
+         padding-left: 20px;
+         padding-right: 20px;
+         padding-bottom: 20px;
+         border-radius: 10px;
+      }   
+
+      #birth_wrap #bir_yy{
+         float:left;
+         margin-right:2px;
+      }
+      #birth_wrap #bir_mm{
+         float:left;
+         margin-right:2px;
+      }
+      #birth_wrap #bir_dd{
+         float:left;
+         margin-right:2px;
+      }
+   </style>
+
+   <script type="text/javascript"src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    </head>
+    <body>
+    <script type="text/javascript">
+        function check_pw(){
+         document.getElementById("check").style.display="block";
+         if(document.getElementById('user_pw1').value==document.getElementById('user_pw2').value){
+            document.getElementById('check').innerHTML="비밀번호가 일치합니다.";
+            document.getElementById('check').style.color='blue';
+         }else{
+            document.getElementById('check').innerHTML="비밀번호가 일치하지 않습니다.";
+            document.getElementById('check').style.color='red';
+         }
+      }
+
+        $(function(){
+            $('#sign-up').click(function(){
+                if ($('.username_input').attr("check_result") == "fail"){
+                    alert("아이디 중복체크를 해주시기 바랍니다.");
+                    $('.username_input').focus();
+                    return false;}
+            
+                if($('#user_pw1').val() != $('#user_pw2').val()){
+                    alert('비밀번호를 확인해주세요');
+                    $('#user_pw1').focus();
+                    return false;
+                }
+                
+                if($('#birth').val().length != 4){
+                    alert('올바른 생년을 입력해주세요');   
+                    return false;                
+                }
+                 } )
+
+            $('.username_input').change(function () {
+            $('#id_check_sucess').hide();
+            $('#btn_id_check').show();
+            $('.username_input').attr("check_result", "fail");
+            })
+
+            $('#btn_id_check').click(function(){
+                var userid = $('#userid').val()
+                if(userid == ''){``
+                    alert('아이디를 입력해주세요.')
+                    return;
+                }
+                $.ajax({
+                    url: "{% url 'id-check' %}",
+                    type:'get',
+                    data:{
+                        'userid':userid
+                    },
+                    dataType:'json',
+                    success:function(response){
+                        if(response.result != 'success'){
+                            console.error(response.data)
+                            return;
+                        }
+                        if(response.data == 'exist'){
+                            alert("존재하는 아이디 입니다");
+                            $('#userid').val('').focus();
+                            return;
+                        }else{
+                            alert("사용 가능한 아이디입니다");
+                            $('#btn_id_check').hide();
+                            $('#id_check_sucess').show();
+                            $('.username_input').attr("check_result", "success");
+                            return;
+                        }
+                    },
+                    error : function(xhr, error){
+                        alert("서버와의 통신에서 문제가 발생했습니다.");
+                        console.error("error : " + error);
+                    }
+                })
+            });})
+            </script>
+
+   <h1>로고</h1>
+   <div id="box">
+      <div id="welcome">
+         <h2>효자손에 오신 걸<br>환영합니다.</h2>
+         <h2>서비스 이용을 위해<br>회원가입 부탁드립니다.</h2>
+      </div>
+
+      <form method="post" id="register_user" action="#" > 
+         {% csrf_token %}
+            <div>
+            <label for="user_id">아이디를 입력해주세요.</label><br>
+                {{form.username}}
+                <input class="id_check" id="btn_id_check" name="id_check" type="button" value="중복확인">
+                <img id="id_check_sucess" src="" style="display:none">
+            <br>
+            <label for="user_pw1">비밀번호를 입력해주세요.</label><br>
+                {{form.password1}}
+            <br>
+            <label for="user_pw2">비밀번호를 한번 더 입력해주세요.</label><br>
+                {{form.password2}}
+            <br><div style="display:none" id="check" ></div>
+
+            <label for="birth">생년을 입력해주세요.</label><br>
+                {{form.age}}
+            <br>
+         </div>   
+         <button type="submit" id="sign-up" name="sign-up" >회원가입</button><br>
+
+         <a href="{% url 'sign-in' %}" target="">로그인하러 가기</a>
+      </form>
+   </div>
+</body>
+</html>

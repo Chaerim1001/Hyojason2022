@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% load static %}
+	<meta charset="utf-8">
+	<title>효자손</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'support/css/user_quest_edit.css' %}">
+	<style>
+		html, body{
+			width:100%;
+			height:100%;
+			padding:0;
+			margin:0;
+			background-color: gainsboro;
+			box-sizing: border-box;
+			background:linear-gradient(-294.89deg, #30324A -0.93%, #6353C7 129.73%);
+			background-position: 100% 100%;
+			background-size: cover;
+			overflow:auto;
+			font-weight: 700;
+		}
+		*{
+			font-family:'Noto Sans KR', sans-serif;
+		}
+		::-webkit-scrollbar{
+			width:5px;
+			height:6px;
+		}
+		::-webkit-scrollbar-thumb {
+			background-color: #c8c8c8;
+		}
+	</style>
+	<SCRIPT>
+		function tableChange1(){
+			document.getElementById("folder1").style.display="block";
+			document.getElementById("folder2").style.display="none";
+		}
+		function tableChange2(){
+			document.getElementById("folder1").style.display="none";
+			document.getElementById("folder2").style.display="block";
+		}
+	</SCRIPT>
+</head>
+<body>
+	<div id="head">
+      <div id="search">
+         <div style="position:relative;width:100%;">
+            <form id="search_box" method='post' action ="{% url 'mainpage' %}">{% csrf_token%}
+               <img src="https://i.ibb.co/6J04RrG/image.png" width="50" style="padding-right: 20px" onclick="location.href='{% url "mainpage" %}'">
+               <input type="text" id="search_app" name="search_app" value="{{app.appName}}" style="font-size:25px">
+               <input type="submit" id="search_btn" name="search_btn" style="font-size:40px;" value="검색하기">
+            <div style="text-align:right">
+               {% if not corp and not user %}
+               <input type="button" class="input" id="user_home_login" name="user_home_login" value="로그인" style="font-size:20px" onclick="location.href='{% url "sign-in"%}'">
+               {% endif %}
+               {% if user and not corp %}
+               <div class="input" style="display:flex;">
+               <input type="button" id="user_home_view" name="user_home_view" value="내 활동 보기" style="font-size:20px" onclick="location.href='{% url "my_page"%}'" >
+               <input type="button" id="user_home_logout" name="user_home_logout" value="로그아웃" style="font-size:20px" onclick="location.href='{% url "logout"%}'">
+               </div>
+               {% endif %}
+               {% if corp %}
+               <div class="input" style="display:flex;">
+               <input type="button" id="user_home_view" name="user_home_view" value="서비스 관리" style="font-size:20px" onclick="location.href='{% url "corp_page"%}'">
+               <input type="button" id="user_home_logout" name="user_home_logout" value="로그아웃" style="font-size:20px" onclick="location.href='{% url "logout"%}'">
+               </div>
+               {% endif %}
+            </form>
+            </div>
+         </div>  
+      </div>  
+   </div>
+   <hr style="width:95%;border: 0; height: 1px; background:rgba(255,255,255,0.43);">
+      <form method='post' id="main"> {% csrf_token %}
+
+		<div style="color:white; font-size:40px; margin-bottom:15px; margin-left:5px">질문하기</div>
+		<div style="background-color:white; border-radius:10px; width:100%; padding:30px;box-sizing: border-box;box-shadow:0px 4px 24px 3px rgba(255,255,255,0.25); display:flex; justify-content:center;">
+			<div style="width:100%">
+				<input id="input_quest_title" name="input_quest_title" type="text" value="{{qna.title}}" style="margin-bottom:10px">
+				<br>
+				<div style="padding:15px">
+					<!-- 수정 -->
+					<textarea name="question_text" style="width:100%;font-size:30px; border:0;word-break: keep-all;" rows="10">{{qna.question}}</textarea>
+				</div>
+			</div>
+		</div>
+		<div style="display:flex; justify-content:center; align-items:center; margin-top: 20px">
+			<input id="quest_edit_cancle" class="quest_input_btn" type="button" value="작성취소" onclick="location.href='{% url "qna_detail" app.appName qna.qnaId %}'" style="margin-right:15px">
+			<input id="quest_edit_complete" class="quest_input_btn" type="submit" value="수정완료"  onclick="location.href='{% url "qna_update" app.appName qna.qnaId %}'" style="margin-left:15px">
+		</div>
+	</form>
+</body>
+</html>

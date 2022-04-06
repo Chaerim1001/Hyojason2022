@@ -1,0 +1,167 @@
+
+	html, body{
+		width:100%;
+		padding:0;
+		margin:0;
+		background-color: gainsboro;
+		box-sizing: border-box;
+		background:linear-gradient(-294.89deg, #30324A -0.93%, #6353C7 129.73%);
+		background-repeat:no-repeat;
+	}
+	*{
+		font-family:'Noto Sans KR', sans-serif;
+	}
+	::-webkit-scrollbar{
+		width:5px;
+	}
+	::-webkit-scrollbar-thumb {
+		background-color: #c8c8c8;
+	}
+	body{
+		overflow: auto;
+	}
+	#head{
+		display: flex;
+		align-items: center;
+		position:relative;
+		padding:10px;
+		padding-left: 30px;
+	}
+	#head input{
+		border:0;
+		background-color: #00ff0000;
+		color:white;
+		font-size: 15px;
+		cursor: pointer;
+		position: absolute;
+		right:20px;
+
+	}
+	#head #user_home_back{
+		font-size:30px;
+		font-weight:700;
+	}
+	#head .home_btn:hover{
+		text-decoration: underline;
+	}
+
+	#menubar{
+		width:15%;
+		min-width: 120px;
+		height:100%;
+		background-color: #00ff0000;
+		text-align: center;
+		padding-top: 30px;
+		float:left;
+		box-sizing: border-box;
+		position:relative;
+	}
+	#menubar .menu{
+		font-size:30px;
+		width:100%;
+		height:45px;
+		background-color: #00ff0000; 
+		border:10px #00ff0000;
+		color:white;
+		font-weight: 700;
+		margin-bottom:10px;
+	}
+
+	#menubar #logout{
+		color:white;
+		position:absolute;
+		bottom:10px;
+		left:0;
+		cursor:pointer;
+	}
+	#menubar #logout:hover{
+		text-decoration: underline;
+	}
+
+	#main{
+		width:85%;
+		padding:30px;
+		padding-left: 45px;
+	}
+	#main #quest_list_main{
+		height:94%;
+		min-width: 850px;
+	}
+	#main #quest_list_main #quest_table{
+		text-align: center;
+		font-size: 15px;
+		width:100%;
+		color:white;
+		border-collapse:collapse;
+	}
+	#main #quest_list_main #table_box{
+		background:rgba(255,255,255,0.31);
+		height:100%;
+		overflow: auto;
+		color:white;
+		font-weight: 400;
+	}
+	#main #quest_list_main #table_box #quest_table_body tr{
+		border-bottom: 0.5px solid #ededed;
+	}
+	#main #quest_list_main #table_box #quest_table_body .quest_title{
+		cursor:pointer;
+	}
+	#main #quest_list_main #table_box #quest_table_body .quest_title:hover{
+		text-decoration: underline;
+	}
+
+	#main #history_main{
+		/*height:94%;*/
+		width:100%;
+		min-width: 500px;
+	}
+	#main #history_main #history{
+		display: flex;
+		flex-wrap: wrap;
+	}
+	#main #history_main .history_app_card{
+		border-radius:5px;
+		display: flex;
+		position: relative;
+		width:45%;
+		margin-right: 20px;
+		margin-bottom: 20px;
+		/*margin-bottom:10px;
+		margin-top:18px;
+		margin-right:15px;*/
+	}
+	#main #history_main .history_app_card .history_app_img_box{
+		/*background-color: white;*/
+		width:100%;
+		min-width:220px;
+		/*max-width: 250px;*/
+		height:100px;
+		padding:15px;
+		padding-left:5px;
+		padding-right:5px;
+		margin-bottom: 5px;
+		background:rgba(255,255,255,0.43);
+		border-radius: 10px;
+		cursor:pointer;
+		color:white;
+	}
+	#main #history_main .history_app_card .history_app_img_box:hover{
+		border:2px solid white;
+	}
+	#main #history_main .history_app_card .history_app_img_box .history_img_card{
+		display: flex;
+		position:relative;
+		/*justify-content: center;*/
+	}
+	#main #history_main .history_app_card .history_app_img_box .history_img_card .history_app_img{
+		width:100px;
+		margin-right: 20px;
+		margin-left:10px;
+	}
+	#main #history_main .history_app_card .history_app_img_box .history_img_card #history_app_name{
+		position:absolute;
+		right:10px;
+		top:-3px;
+		font-size: 25px;
+	}

@@ -1,0 +1,121 @@
+
+	html, body{
+		width:100%;
+		height:100%;
+		padding:0;
+		margin:0;
+		box-sizing: border-box;
+		background:linear-gradient(294.89deg, #30324A -0.93%, #6353C7 129.73%);
+		background-repeat:no-repeat;
+	}
+	*{
+		font-family:'Noto Sans KR', sans-serif;
+	}
+	::-webkit-scrollbar{
+		width:5px;
+	}
+	::-webkit-scrollbar-thumb {
+		background-color: #c8c8c8;
+	}
+	body{
+		overflow: auto;
+	}
+	#body{
+		width:100%;
+		height:100%;
+		display:flex;
+		justify-content:center;
+		align-items:center;
+	}
+	#box{
+		height:100%;
+		width:100%;
+		display:flex;
+		justify-content:center;
+		align-items:center;
+	}
+	#box #welcome{
+		height:80%;
+		width:100%;
+		background:rgba(48,50,74,0.45);
+		padding:40px;
+		display:block;
+		color:white;
+		position:relative;
+		z-index:0;
+	}
+
+	#box #register_box_first{
+		width:40%;
+		min-width:430px;
+		max-width:500px;
+		height:75%;
+		min-height:500px;
+		z-index:1;
+		background-color: white;
+		box-shadow:12px 8px 44px rgba(0,0,0,0.4);
+		display:flex;
+		justify-content:center;
+		align-items:center;
+		font-weight:700;
+	}
+	#box #register_box_first #register_corp1 #next_page{
+		border:0;
+		color:#30324A;
+		background-color:#00ff0000;
+		font-weight:700;
+		font-size:15px;
+		cursor:pointer;
+	}
+	#box #register_box_first #register_corp1 #next_page:hover{
+		text-decoration:underline;
+	}
+
+	#box #register_box_next{
+		width:40%;
+		min-width:430px;
+		max-width:500px;
+		height:75%;
+		min-height:500px;
+		z-index:1;
+		background-color: white;
+		box-shadow:12px 8px 44px rgba(0,0,0,0.4);
+		display:flex;
+		justify-content:center;
+		align-items:center;
+		font-weight:700;
+	}
+	#box #register_box_next #register_corp2{
+		width:100%;
+		max-width:410px;
+	}	
+
+	#box #register_box_next #register_corp2 #register_back{
+		border:0;
+		color:#30324A;
+		background-color:#00ff0000;
+		font-weight:700;
+		font-size:15px;
+		cursor:pointer;
+	}
+	#box #register_box_next #register_corp2 #register_complete{
+		border:0;
+		color:#30324A;
+		background-color:#00ff0000;
+		font-weight:700;
+		font-size:15px;
+		cursor:pointer;
+	}
+	#box #register_box_next #register_corp2 #register_complete:hover{
+		text-decoration:underline;
+	}
+	#box #register_box_next #register_corp2 #go_login{
+		border:0;
+		color:#D1D1D1;
+		background-color:#00ff0000;
+		cursor:pointer;
+	}
+	#box #register_corp2 #go_login:hover{
+		text-decoration:underline;
+	}
+

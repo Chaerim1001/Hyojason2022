@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+     {% load static %}
+   <title>효자손</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="{% static 'support/css/user_home_category.css' %}">
+   <style>
+      html, body{
+      width:100vw;
+      height:100%;
+      padding:0;
+      margin:0;
+      background-color: gainsboro;
+      box-sizing: border-box;
+      background:linear-gradient(-294.89deg, #30324A -0.93%, #6353C7 129.73%);
+      background-repeat:no-repeat;
+      background-size: cover;
+      overflow-x:hidden;
+   }
+   *{
+      font-family:'Noto Sans KR', sans-serif;
+   }
+   ::-webkit-scrollbar{
+      width:5px;
+   }
+   ::-webkit-scrollbar-thumb {
+      background-color: #c8c8c8;
+   }
+   </style>
+</head>
+<body>
+   <div style="display:flex;justify-content:center;">
+      <div id="head">
+         <img src="https://i.ibb.co/6J04RrG/image.png" width="50" style="margin-right: 20px;width:5%;min-width:50px" onclick="location.href='{% url "mainpage" %}'">
+            <div style="width:56%"> </div>
+               <div style="text-align:right;width:39%">
+                  {% if not corp and not user %}
+                  <input type="button" class="input" id="user_home_login" name="user_home_login" value="로그인" onclick="location.href='{% url "sign-in"%}'">
+                  {% endif %}
+                  {% if user %}
+                  <input type="button" id="user_home_view" class="input" name="user_home_view" value="내 활동 보기" onclick="location.href='{% url "my_page"%}'" >
+                  <input type="button" id="user_home_logout" class="input" name="user_home_logout" value="로그아웃" onclick="location.href='{% url "logout"%}'">
+                  {% endif %}
+                  {% if corp %}
+                  <input type="button" id="user_home_view" class="input" name="user_home_view" value="서비스 관리" onclick="location.href='{% url "corp_page"%}'">
+                  <input type="button" id="user_home_logout" class="input" name="user_home_logout" value="로그아웃" onclick="location.href='{% url "logout"%}'">
+                  {% endif %}
+               </div>
+            </div>
+         </div>
+      </div>
+   <div id="body" style="padding:1%">
+      <div id="search">
+         <div style="width:70%;min-width:600px;max-width:1280px;padding-left:3%;height:100%">
+            <div style="width:100%; word-break:keep-all; font-size: 30px;color:white">어떤 어플의<br>사용법이 궁금하세요?</div>
+            <div id="search_box">
+                  <form style="display:flex;width:100%;" method='post' action ="{% url 'mainpage' %}">{% csrf_token %} 
+                  <div style="position:relative;width:85%;">
+                     <input type="text" id="search_app" name="search_app" style="position:relative;z-index:1;">
+                     <img id="search_img" src="https://i.ibb.co/ZMbdmR1/13.png" width="200" style="z-index:0;">
+                  </div>
+                  <input type="submit" id="search_btn" name="search_btn" value="검색하기">
+               </form>
+               <script>
+                  const $input_01=document.getElementById('search_app');
+                  $input_01.focus();
+                  $input_01.color="white";
+
+               </script>
+            </div>
+         </div>
+      </div>
+         <div class="category_body">
+            <div id="category_context">
+               <div style="width:100%;">
+                  <div style="font-size:30px; margin-bottom:10px; margin-left:25px">어플 사용법 살펴보기</div>
+                  <div style="margin-bottom:10px; display:flex;justify-content: center;align-items: center;">
+                    {% if category == 'sns' %}
+                     <div style="width:18%; min-width:165px;font-size:20px; margin-right: 15px">소통 서비스</div>
+                     {% elif category == 'media'%}
+                     <div style="width:18%; min-width:165px;font-size:20px; margin-right: 15px">동영상 및 사진 서비스</div>
+                     {% elif category == 'benefit'%}
+                     <div style="width:18%; min-width:165px;font-size:20px; margin-right: 15px">혜택 서비스</div>
+                     {% elif category == 'shopping'%}
+                     <div style="width:18%; min-width:165px;font-size:20px; margin-right: 15px">쇼핑 서비스</div>
+                     {% elif category == 'health'%}
+                     <div style="width:18%; min-width:165px;font-size:20px; margin-right: 15px">건강 서비스</div>
+                     {% elif category == 'map' %}
+                     <div style="width:18%; min-width:165px;font-size:20px; margin-right: 15px">지도 서비스</div>
+                     {% elif category == 'finance'%}
+                     <div style="width:18%; min-width:165px;font-size:20px; margin-right: 15px">금융 서비스</div>
+                     {% else%}
+                     <div style="width:18%; min-width:165px;font-size:20px; margin-right: 15px">기타 서비스</div>
+                     {% endif%}
+                     <hr style="width:75%;border: 0; height: 1px; margin:0;background:rgba(255,255,255,0.43);">
+                  </div>
+                  <div style="width:100%; display:flex;justify-content:center;">
+                     <div id="app_view" style="display: flex;align-items: center;">
+                    <div style="display:flex;align-items:center;flex-wrap: wrap;margin-left: 1%">
+                     {% for app in apps %}
+                            <div class="category_app_card" onclick="location.href='{% url "app_detail" app.appName %}'">
+                        <div class="category_app_img_box">
+                           <div class="category_img_card">
+                              <img class="category_app_img" src="{{ app.get_image_url }}">
+                              <div id="category_app_name">{{app.appName}}</div>
+                           </div>
+                           <div style="height:60px" class="category_app_text">{{app.appExplain}}</div>
+                        </div>
+                     </div>
+                            {% endfor %}
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</body>
+</html>

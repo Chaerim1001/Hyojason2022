@@ -1,0 +1,301 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+   
+    <title>
+       효자손
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'support/css/fileupload.css' %}">
+    <style>
+      html, body{
+         width:100%;
+         height:100%;
+         padding:0;
+         margin:0;
+         background-color: gainsboro;
+         box-sizing: border-box;
+         background-color: #ffffff;
+     }
+ </style>
+ <script>
+ </script>
+</head>
+<body>   
+    <div id=corp_menu>
+         <img src="https://i.ibb.co/6J5csk1/image.png" onclick="location.href='{% url "mainpage" %}'" width="100" style="margin-left:5px; margin-bottom:20px; padding-left:10px;"><br>
+
+              <input type="button" id="app_list_btn" class="menu" value="어플 리스트" onclick="location.href='{% url "corp_page" %}';mainChange1()" ><br>
+      <input type="button" id="upload_btn" class="menu" value="게시물 업로드" onclick="location.href='{% url "fileupload" %}';mainChange2()" style="background-color:white; color:#30324A;"><br>
+      <input type="button" id="quest_manage_btn" class="menu" value="질문 관리" onclick="location.href='{% url "qna_manage" %}'; mainChange3()"><br>
+        <div id="blank"></div>
+
+        <input type="button" id="logout_btn" class="menu" onclick="location.href='{% url "logout"%}'" value="로그아웃">
+
+    </div>
+    <form id='main_form' method='post' enctype="multipart/form-data" > {%csrf_token%}
+    <div id=main>
+        <div id="app_reg" style="height:100%">
+         <div id="item_list_main" style="display: block">
+            <div class="title">게시물 업로드</div>
+            <hr class="hr1">
+            <div id="app_radiobox">
+                <div style="margin-right:20px" display="inline-block" >어플 선택</div>
+                {% for app in apps%} 
+                <input type="radio" name="app_select" value={{app.appName}}  style=" font-weight: 400; width:20px; height:20px;margin-left:20px"> {{app.appName}} 
+                {% endfor %} 
+            </div>
+            <hr class="hr2">
+            <div id="app_radiobox">
+                <div style="margin-right:20px " display="inline-block" >기능 분야</div>
+                <input type="radio" name="func_select" value="basic_func"  style=" font-weight: 400; width:20px; height:20px;margin-left:20px">기본 기능
+                <input type="radio" name="func_select" value="sub_func"  style=" font-weight: 400; width:20px; height:20px;margin-left:20px">부가 기능
+            </div>
+            <hr class="hr2">
+            <div id="func_name">
+                <div style="margin-right:20px">기능 이름</div>
+                    <input type="text" id="app_func_input" name="func_name" placeholder="Ex.채팅보내기">       
+            </div>
+            <hr class="hr2">
+            <br>
+            <div style="display:flex; align-items: center;">
+                <div id="level">
+                    <div style="margin-right:20px; width: 20%;">1단계</div>
+                    <div id="level_box">
+                             <input type="text" id="step1" class="level_name_input" name="level_name1" placeholder="Ex.채팅보내기">
+                             <br>
+                             <br>
+                             <textarea type="text" id="step1_explain" class="level_input" name="level_sent1" style="width: 190%; height: 70%;" placeholder="단계에 대한 설명을 입력해주세요"></textarea>
+                        <br>
+                        
+                           <!--  {% comment %} --> <img src="https://i.ibb.co/82MFg7q/folder.png" width="30"><!--  {% endcomment %} -->
+                        
+                            <input type="file" id="app_logo_upload_btn" name="app_logo_upload_btn1" style="background-color: #ffffff;" value="사진업로드">
+                            <div style="color: red; font-size: small;width:120px">9:20 비율로 업로드</div>
+                        
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr class="hr2">
+            <br>
+            <div style="display:flex; align-items: center;">
+                <div id="level">
+                    <div style="margin-right:20px; width: 20%;">2단계</div>
+                    <div id="level_box">                  
+                            <input type="text" id="step2" class="level_name_input" name="level_name2" placeholder="Ex.채팅보내기">
+                            <br>
+                            <br>
+                            <textarea type="text" id="step2_explain" class="level_input" name="level_sent2" style="width: 190%; height: 70%;" placeholder="단계에 대한 설명을 입력해주세요"></textarea>
+                        <br>
+                        
+                            <!--  {% comment %} --> <img src="https://i.ibb.co/82MFg7q/folder.png" width="30"><!--  {% endcomment %} -->
+                            
+                            <input type="file" id="app_logo_upload_btn" name="app_logo_upload_btn2" style="background-color: #ffffff;" value="사진업로드">
+                            <div style="color: red; font-size: small;width:120px">9:20 비율로 업로드</div>
+                        
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr class="hr2">
+            <br>
+            <div style="display:flex; align-items: center;">
+                <div id="level">
+                    <div style="margin-right:20px; width: 20%;">3단계</div>
+                    <div id="level_box">
+                        <input type="text" id="step3" class="level_name_input" name="level_name3" placeholder="Ex.채팅보내기">
+                        <br>
+                        <br>
+                        <textarea type="text" id="step3_explain" class="level_input" name="level_sent3" style="width: 190%; height: 70%;" placeholder="단계에 대한 설명을 입력해주세요"></textarea>
+                        <br>
+                        
+                        
+                            <!--  {% comment %} --> <img src="https://i.ibb.co/82MFg7q/folder.png" width="30"><!--  {% endcomment %} -->
+                            
+                            <input type="file" id="app_logo_upload_btn" name="app_logo_upload_btn3" style="background-color: #ffffff;" value="사진업로드">
+                            <div style="color: red; font-size: small;width:120px">9:20 비율로 업로드</div>
+                        
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr class="hr2">
+            <br>
+            <div style="display:flex; align-items: center;">
+                <div id="level">
+                    <div style="margin-right:20px; width: 20%;">4단계</div>
+                    <div id="level_box">
+                            <input type="text" id="step4" class="level_name_input" name="level_name4" placeholder="Ex.채팅보내기">
+                            <br>
+                            <br>
+                            <textarea type="text" id="step4_explain" class="level_input" name="level_sent4" style="width: 190%; height: 70%;" placeholder="단계에 대한 설명을 입력해주세요"></textarea>
+                            <br>
+                            
+                        
+                            <!--  {% comment %} --> <img src="https://i.ibb.co/82MFg7q/folder.png" width="30"><!--  {% endcomment %} -->
+                            
+                                <input type="file" id="app_logo_upload_btn" name="app_logo_upload_btn4" style="background-color: #ffffff;" value="사진업로드">
+                            <div style="color: red; font-size: small;width:120px">9:20 비율로 업로드</div>
+                        
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr class="hr2">
+            <br>
+            <div style="display:flex; align-items: center;">
+                <div id="level">
+                    <div style="margin-right:20px; width: 20%;">5단계</div>
+                    <div id="level_box">
+                            <input type="text" id="step5" class="level_name_input" name="level_name5" placeholder="Ex.채팅보내기">
+                            <br>
+                            <br>
+                            <textarea type="text" id="step5_explain" class="level_input" name="level_sent5" style="width: 190%; height: 70%;" placeholder="단계에 대한 설명을 입력해주세요"></textarea>
+                            <br>
+                            
+                        
+                            <!--  {% comment %} --> <img src="https://i.ibb.co/82MFg7q/folder.png" width="30"><!--  {% endcomment %} -->
+                            
+                                <input type="file" id="app_logo_upload_btn" name="app_logo_upload_btn5" style="background-color: #ffffff;" value="사진업로드">
+                            <div style="color: red; font-size: small;width:120px">9:20 비율로 업로드</div>
+                        
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr class="hr2">
+            <br>
+            <div style="display:flex; align-items: center;">
+                <div id="level">
+                    <div style="margin-right:20px; width: 20%;">6단계</div>
+                    <div id="level_box">
+                            <input type="text" id="step6" class="level_name_input" name="level_name6" placeholder="Ex.채팅보내기">
+                            <br>
+                            <br>
+                            <textarea type="text" id="step6_explain" class="level_input" name="level_sent6" style="width: 190%; height: 70%;" placeholder="단계에 대한 설명을 입력해주세요"></textarea>
+                            <br>
+                            
+                    
+                            <!--  {% comment %} --> <img src="https://i.ibb.co/82MFg7q/folder.png" width="30"><!--  {% endcomment %} -->
+                            
+                                <input type="file" id="app_logo_upload_btn" name="app_logo_upload_btn6" style="background-color: #ffffff;" value="사진업로드">
+                            <div style="color: red; font-size: small;width:120px">9:20 비율로 업로드</div>
+                        
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr class="hr2">
+            <br>
+            <div style="display:flex; align-items: center;">
+                <div id="level">
+                    <div style="margin-right:20px; width: 20%;">7단계</div>
+                    <div id="level_box">
+                            <input type="text" id="step7" class="level_name_input" name="level_name7" placeholder="Ex.채팅보내기">
+                            <br>
+                            <br>
+                            <textarea type="text" id="step7_explain" class="level_input" name="level_sent7" style="width: 190%; height: 70%;" placeholder="단계에 대한 설명을 입력해주세요"></textarea>
+                            <br>
+                            
+                        
+                            <!--  {% comment %} --> <img src="https://i.ibb.co/82MFg7q/folder.png" width="30"><!--  {% endcomment %} -->
+                            
+                                <input type="file" id="app_logo_upload_btn" name="app_logo_upload_btn7" style="background-color: #ffffff;" value="사진업로드">
+                            <div style="color: red; font-size: small;width:120px">9:20 비율로 업로드</div>
+                        
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr class="hr2">
+            <br>
+            <div style="display:flex; align-items: center;">
+                <div id="level">
+                    <div style="margin-right:20px; width: 20%;">8단계</div>
+                    <div id="level_box">
+                            <input type="text" id="step8" class="level_name_input" name="level_name8" placeholder="Ex.채팅보내기">
+                            <br>
+                            <br>
+                            <textarea type="text" id="step8_explain" class="level_input" name="level_sent8" style="width: 190%; height: 70%;" placeholder="단계에 대한 설명을 입력해주세요"></textarea>
+                            <br>
+                            
+                        
+                            <!--  {% comment %} --> <img src="https://i.ibb.co/82MFg7q/folder.png" width="30"><!--  {% endcomment %} -->
+                            
+                                <input type="file" id="app_logo_upload_btn" name="app_logo_upload_btn8" style="background-color: #ffffff;" value="사진업로드">
+                            <div style="color: red; font-size: small;width:120px">9:20 비율로 업로드</div>
+                        
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr class="hr2">
+            <br>
+            <div style="display:flex; align-items: center;">
+                <div id="level">
+                    <div style="margin-right:20px; width: 20%;">9단계</div>
+                    <div id="level_box">
+                            <input type="text" id="step9" class="level_name_input" name="level_name9" placeholder="Ex.채팅보내기">
+                            <br>
+                            <br>
+                            <textarea type="text" id="step9_explain" class="level_input" name="level_sent9" style="width: 190%; height: 70%;" placeholder="단계에 대한 설명을 입력해주세요"></textarea>
+                            <br>
+                            
+                        
+                            <!--  {% comment %} --> <img src="https://i.ibb.co/82MFg7q/folder.png" width="30"><!--  {% endcomment %} -->
+                            
+                                <input type="file" id="app_logo_upload_btn" name="app_logo_upload_btn9" style="background-color: #ffffff;" value="사진업로드">
+                            <div style="color: red; font-size: small;width:120px">9:20 비율로 업로드</div>
+                        
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr class="hr2">
+            <br>
+            <div style="display:flex; align-items: center;">
+                <div id="level">
+                    <div style="margin-right:20px; width: 20%;">10단계</div>
+                    <div id="level_box">
+                            <input type="text" id="step10" class="level_name_input" name="level_name10" placeholder="Ex.채팅보내기">
+                            <br>
+                            <br>
+                            <textarea type="text" id="step10_explain" class="level_input" name="level_sent10" style="width: 190%; height: 70%;" placeholder="단계에 대한 설명을 입력해주세요"></textarea>
+                            <br>
+                            
+                        
+                            <!--  {% comment %} --> <img src="https://i.ibb.co/82MFg7q/folder.png" width="30"><!--  {% endcomment %} -->
+                            
+                                <input type="file" id="app_logo_upload_btn" name="app_logo_upload_btn10" style="background-color: #ffffff;" value="사진업로드">
+                            <div style="color: red; font-size: small;width:120px">9:20 비율로 업로드</div>
+                        
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div style="text-align: center;">
+                
+                <input type="button" id="blue_btn"  style="display: inline-block" value="미리보기">
+                <input type="submit" id="blue_btn"  style="display: inline-block" value="업로드요청">       
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+</body>
+</html>
+<!-- {% comment %} {% block content %}
+<div class="container">
+    <form method="POST" action="{% url 'fileupload' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ guidelineform }}
+        <button type="submit">Upload guide</button>
+    </form>
+</div>
+{% endblock%} {% endcomment %} -->

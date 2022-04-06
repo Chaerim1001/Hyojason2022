@@ -1,0 +1,151 @@
+
+	html, body{
+		width:100%;
+		height:100%;
+		padding:0;
+		margin:0;
+		box-sizing: border-box;
+		background:linear-gradient(-294.89deg, #30324A -0.93%, #6353C7 129.73%);
+		background-repeat:no-repeat;
+	}
+	*{
+		font-family:'Noto Sans KR', sans-serif;
+		font-weight: 700;
+	}
+
+	#body{
+		width:100%;
+		/*height:60%;*/
+		position:absolute;
+		top:50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	#body #login_logo{
+		display:flex;
+		justify-content: center;
+		align-items: center;
+		position:relative;
+	}
+	#body #login_logo img{
+		width:10%;
+		min-width: 70px;
+		max-width: 100px;
+
+	}
+	#body #login_main{
+		width:500px;
+		/*max-width: 1500px;*/
+		/*height:100%;*/
+		position:relative;
+	}
+	#select_member{
+		text-align:center;
+	}
+	#select_member input{
+		/*background-color: white;
+		color:#30324A;*/
+		border:0;
+		width:50%;
+		height: 60px;
+		font-size: 25px;
+	}
+
+	#select_member #btn1{
+		margin-right:-2px;
+		margin-bottom: -1px;
+	}
+	#select_member #btn2{
+		margin-left:-2px;
+		margin-bottom: -1px;
+	}
+
+	#body #login_main .login_form{
+		height:250px;
+		width:100%;
+		display:flex;
+		justify-content: center;
+		align-items: center;
+		background:rgba(48,50,74,0.45);
+		color:white;
+		position:relative;
+		z-index:1;
+	}
+	#body #login_main .login_form #sign_user{
+		background-color:#00ff0000;
+		width:70%;
+	}
+	#body #login_main .login_form #sign_user input{
+		width:100%;
+		border:0;
+		background-color: #00ff0000;
+		border-bottom:1px solid;
+		border-color:white;
+		color:white;
+	}
+	#body #login_main .login_form #sign_user input::placeholder{
+		color:#DCDCDC;
+		font-weight: 400;
+	}
+	#body #login_main .login_form #sign_user .login_btn{
+		background-color:#00ff0000;
+		border:0;
+		color:white;
+		cursor: pointer;
+	}
+	#body #login_main .login_form #sign_user .login_btn:hover{
+		text-decoration: underline;
+
+	}
+	#body #login_main .login_form #sign_corp{
+		display: none;
+		background-color:#00ff0000;
+		width:70%;
+	}
+	#body #login_main .login_form #sign_corp input{
+		width:100%;
+		border:0;
+		background-color: #00ff0000;
+		border-bottom:1px solid;
+		border-color:white;
+		color:white;
+	}
+	#body #login_main .login_form #sign_corp input::placeholder{
+		color:#DCDCDC;
+		font-weight: 400;
+	}
+	#body #login_main .login_form #sign_corp .login_btn{
+		background-color:#00ff0000;
+		border:0;
+		color:white;
+		cursor: pointer;
+	}
+	#body #login_main .login_form #sign_corp .login_btn:hover{
+		text-decoration: underline;
+
+	}
+	#body #login_main #login_corp{
+		display:none;
+	}
+	#body #login_main #foot{
+		display:flex;
+		justify-content: center;
+		align-items: center;
+		color:white;
+		font-size:15px;
+		margin-top: 20px;
+		text-align: center;
+	}
+	#body #login_main #foot a{
+		text-decoration: none;
+		font-size:20px;
+
+	}
+	#body #login_main .to_reg{
+		color:white;
+		cursor:pointer;
+
+	}
+	#body #login_main #foot a:hover{
+		text-decoration: underline;
+	}

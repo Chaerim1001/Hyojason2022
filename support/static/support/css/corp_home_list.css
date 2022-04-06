@@ -1,0 +1,337 @@
+html, body{
+    width:100%;
+    height:100%;
+    padding:0;
+    margin:0;
+    background-color: gainsboro;
+    box-sizing: border-box;
+    background-color: white;
+  }
+ 
+  *{
+    font-family:'Noto Sans KR', sans-serif;
+    font-weight: 900;
+  }
+  body{
+    display: flex;
+  }
+ 
+  .hr1{
+      border: 0;
+      height: 3px;
+      background:black;
+   }
+   .hr2{
+     border:0;
+     height:2px;
+     background-color: #CCCCCC;
+   }
+ 
+  #corp_menu{
+    /*width:30%;*/
+    max-width: 200px;
+    height:100%;
+    min-width: 180px;
+    background-color: #30324A;
+    padding-top: 40px;
+    margin-right:30px;
+    float:left;
+    box-sizing: border-box;
+ 
+  }
+  #corp_menu #menubar{
+    position:relative;
+    /*height:calc(100%-150px);*/
+  }
+ 
+  #corp_menu .menu{
+    font-size:20px;
+    width:100%;
+    padding-top: 7px;
+    padding-bottom:7px; 
+    background-color: #30324A; 
+    border:10px #30324A;
+    color:white;
+    padding-left:40px;
+    padding-right:30px;
+    text-align: left;
+  }
+ 
+  #corp_menu #logout_btn{
+    width:130px;
+    position:absolute;
+    bottom:20px;
+    left:0px;
+  }   
+  #main{
+    width:100%;
+    height:100%;
+    float:left;
+    padding:4%;
+    box-sizing: border-box;
+    overflow: auto;
+  }
+ 
+  #main #item_list_main{
+    width:100%;
+    height:100%;
+  }
+ 
+  #main #item_list_main .title{
+    font-size:30px;
+    padding:0px;
+    margin-bottom: 20px;
+    position:relative;
+  }
+  #main #item_list_main .title #reg_btn{
+    position:absolute;
+    top:10px;
+    right:10px;
+    height:30px;
+    border:0;
+    background-color: #30324A;
+    color:white;
+    padding-left:20px;
+    padding-right:20px;
+    font-weight:400;
+  }
+  #main #item_list_main #item_page{
+    width:100%;
+    height:50%;
+    text-align: center;
+    vertical-align: middle;
+    box-sizing: border-box;
+    background-color: white;
+  }
+  #main #item_list_main #item_page #item_table{
+    text-align: center;
+    font-size: 15px;
+    width:100%;
+    border-collapse:collapse;
+  }
+  #main #item_list_main #item_page #item_table #item_table_head{
+    background-color: #A4A4A4;
+  }
+  #main #item_list_main #item_page #item_table #item_table_body .table_btn{
+    background-color: #4E4693; 
+    color:white;
+    font-weight: 400;
+    border:10px white;
+    padding:2px;
+    padding-left: 20px;
+    padding-right:20px;
+  }
+  #main #upload_main{
+    height:100%;
+  }
+  #main #upload_main #upload_head{
+    /*height:27%;*/
+    width:600px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  #main #upload_main #upload_head #logo{
+    height:180px;
+    width:180px;
+    background-color:white;
+    margin-right: 45px;
+    display: flex;
+    align-items: center;
+    border-radius:25px;
+    text-align: center;
+  }
+  #main #upload_main #upload_head #logo img{
+    height:100%;
+    width:100%;
+  }
+  #main #upload_main #upload_body{
+    height:30%;
+    display: flex;
+    /*align-items: center;*/
+  }
+  #main #upload_main #upload_body .upload_button{
+    width:220px;
+    border-radius:30px;
+    border:none;
+    padding:3px;
+    margin-bottom:10px;
+    background: #F1DC92;
+    font-size:20px;
+  }
+  #main #upload_main #upload_body .upload_item{
+    height:190px;
+    width:190px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    margin-left:30px;
+    padding:20px;
+    border-radius:30px;
+  }
+  #main #upload_main #upload_body .upload_item span{
+    width:100%;
+    text-align: center;
+  }
+  #main #app_reg #app_logo {
+    display:flex;
+    align-items: center;
+    width:100%;
+    height:30%;
+    box-sizing: border-box;
+    margin-top:20px;
+    position:relative;
+  }
+  #main #app_reg #app_logo .b1{
+    position:relative;
+    padding-top: 100%; /* 1:1 ratio */ 
+    overflow: hidden;
+    width:100%;
+    /*height:100%;*/
+    border-radius:10px;
+  }
+  #main #app_reg #app_logo .b2{
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    width:100%;
+    height:100%;
+    transform: translate(50%,50%);
+  }
+  #main #app_reg #app_logo .b3{
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    max-width: 100%; 
+    width:100%;
+    height:100%;
+    transform: translate(-50%,-50%);
+  }
+  #main #app_reg #app_logo #app_logo_box{
+    height:100%;
+    width:100%;
+    background-color: #EDEDED;
+    border-radius: 10px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #main #app_reg #app_logo #app_logo_box #app_logo_upload_btn{
+    border:0;
+    cursor: pointer;
+  }
+  #main #app_reg #app_logo #app_logo_box #app_logo_upload_btn:hover{
+    text-decoration: underline;
+  }
+ 
+  #main #app_reg #app_logo #app_logo_box_edit{
+    height:100%;
+    width:100%;
+    background-color: #EDEDED;
+    border-radius: 10px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #main #app_reg #app_logo #app_logo_box_edit #app_logo_upload_edit_btn{
+    border:0;
+    cursor: pointer;
+  }
+  #main #app_reg #app_logo #app_logo_box_edit #app_logo_upload_edit_btn:hover{
+    text-decoration: underline;
+  }
+  
+  #main #app_reg #app_name {
+    height:15%;
+    display:flex;
+    align-items: center;
+  }
+  #main #app_reg #app_name #app_name_input{
+    padding:5px;
+    border:2px solid #C8C8C8;
+  }
+  #main #app_reg #app_category {
+    height:15%;
+    display:flex;
+    align-items: center;
+  }
+  #main #app_reg #app_category #category{
+    padding:5px;
+    padding-right: 10px;
+    border:2px solid #C8C8C8;
+  }
+  #main #app_reg #app_service {
+    height:20%;
+    display:flex;
+    align-items: center;
+  }
+  #main #app_reg #app_service #app_service_input {
+    padding:5px;
+    /*width:360px;*/
+    padding-right:200px;
+    border:2px solid #C8C8C8;
+  }
+  #main #app_reg #app_reg_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+  }
+  #main #app_reg #app_reg_box #app_reg_btn{
+    border:0;
+    padding:10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 30px;
+    background-color: #4E4693;
+    color:white;
+  }
+ 
+ 
+  #main #app_reg #app_name_edit {
+    height:15%;
+    display:flex;
+    align-items: center;
+  }
+  #main #app_reg #app_name_edit #app_name_input_edit{
+    padding:5px;
+    border:2px solid #C8C8C8;
+  }
+  #main #app_reg #app_category_edit {
+    height:15%;
+    display:flex;
+    align-items: center;
+  }
+  #main #app_reg #app_category_edit #category_edit{
+    padding:5px;
+    padding-right: 10px;
+    border:2px solid #C8C8C8;
+  }
+  #main #app_reg #app_service_edit {
+    height:20%;
+    display:flex;
+    align-items: center;
+  }
+  #main #app_reg #app_service_edit #app_service_input_edit {
+    padding:5px;
+    padding-right:200px;
+    border:2px solid #C8C8C8;
+  }
+  #main #app_reg #app_reg_box_edit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+  }
+  #main #app_reg #app_reg_box_edit #app_reg_btn_edit{
+    border:0;
+    padding:10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 30px;
+    background-color: #4E4693;
+    color:white;
+  }
